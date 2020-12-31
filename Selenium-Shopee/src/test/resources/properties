@@ -1,0 +1,13 @@
+# Target Web Url
+targetUrl=https://www.shopee.com.my
+
+# Chrome Properties
+driver.chrome=webdriver.chrome.driver
+driver.chrome.path=src/main/resources/chrome/chromedriver.exe
+chrome.options.headless=--headless
+chrome.options.gpu=--disable-gpu
+chrome.options.windows=--window-size=1400,800
+
+# FireFox Properties
+
+# Safari Properties
