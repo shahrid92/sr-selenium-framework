@@ -1,2 +1,2 @@
 # sr-selenium-framework
-Repository for self learning Selenium test automation
+Repository for my learning Selenium test automation.
