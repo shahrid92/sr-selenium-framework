@@ -1,23 +1,22 @@
 package pageObjectRepo;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Reporter;
 
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.common.truth.Truth.assert_;
 
 public class ResultsPage extends PageObject {
 
-    @FindBy(css = ".shopee-search-result-header__text-highlight")
-    private WebElement searchedProductTextHighlight;
-
-    @FindBy(css = ".row > div")
-    private List<WebElement> productsList;
+    /*
+    * Helper :
+    * - wait
+    * - js
+    *
+    */
 
     public ResultsPage(WebDriver driver){
         super(driver);
@@ -31,10 +30,12 @@ public class ResultsPage extends PageObject {
     }
 
     public ResultsPage SearchProductionSelection(){
-
-
-        productsList.get(5).click();
-
+        js.scrollPageDown(4,0,1000);
+        wait.until(ExpectedConditions.visibilityOf(productsList.get(49))); // Not working
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        System.out.println(productsTitle.get(49).getText());
+        productsList.get(49).click();
+        wait.withMessage("Not Found").until(ExpectedConditions.visibilityOf(productPage));
         return this;
     }
 
