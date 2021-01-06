@@ -5,12 +5,12 @@ import org.testng.annotations.Test;
 
 public class SearchFilter extends TestDriverClass {
 
-    @Test
+    @Test(enabled = false)
     public void Filter_ShippedFrom_Test(){
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void Filter_ByCatergory_Test(){
 
     }
