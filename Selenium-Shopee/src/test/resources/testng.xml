@@ -4,8 +4,7 @@
     <parameter name="browser" value="chrome"/>
     <test name="Test">
         <classes>
-            <class name="test.ui.SearchFilter" />
-            <class name="test.ui.SearchProduct"/>
+            <class name="test.ui.SearchProduct" />
         </classes>
     </test>
 </suite>

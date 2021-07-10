@@ -40,7 +40,6 @@ public class TestDriverClass  {
     @BeforeMethod
     @Parameters({"browser"})
     public void mainDriver(String browser) {
-
         switch(browser){
             case "chrome" :
                 url = readPropertiesFile.Property().getProperty("targetUrl");

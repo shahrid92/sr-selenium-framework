@@ -50,7 +50,7 @@ public class LandingPage extends PageObject {
     }
 
     public LandingPage languageHomeSelection(String lang){
-        Reporter.log("Select Language : "+ lang);
+        Reporter.log("Select Language : "+ lang + "<br>");
         for(int i=0;i<languageSelection.size()-1;i++) {
             if (languageSelection.get(i).getText().equals(lang)) {
                 languageSelection.get(i).click();
@@ -60,22 +60,22 @@ public class LandingPage extends PageObject {
     }
 
     public LandingPage adsModalDisplay(){
-        Reporter.log("Verify Ads Modal");
+        Reporter.log("Verify Ads Modal <br>");
         wait.until(ExpectedConditions.visibilityOf(adsModal));
-        assert_().withMessage("Ads Modal should be displayed").that(adsModal.isDisplayed()).isTrue();
+        assert_().withMessage("Ads Modal should be displayed <br>").that(adsModal.isDisplayed()).isTrue();
         adsModalCloseBtn.click();
         return this;
     }
     
-    public LandingPage searchProducts() {
-        Reporter.log("Search Product");
+    public LandingPage searchProducts(String product) {
+        Reporter.log("Search Product <br>");
         wait.until(ExpectedConditions.visibilityOf(searchBar));
         wait.until(ExpectedConditions.visibilityOf(searchBtn));
-        Reporter.log("Click Search Bar");
+        Reporter.log("Click Search Bar <br>");
         searchBar.click();
-        Reporter.log("Enter Search Queries");
-        searchBar.sendKeys("Apple IPhone 12 Pro Max");
-        Reporter.log("Click Search Button");
+        Reporter.log("Enter Search Queries <br>");
+        searchBar.sendKeys(product);
+        Reporter.log("Click Search Button <br>");
         searchBtn.click();
 
         ResultsPage rp = new ResultsPage(driver);

@@ -1,6 +1,7 @@
 package pageObjectRepo;
 
 import common.helper.JsExecuteHelper;
+import driverLifeCycle.TestDriverClass;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class PageObject {
+public class PageObject extends TestDriverClass {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected JsExecuteHelper js;
@@ -28,9 +29,10 @@ public class PageObject {
     protected WebElement searchedProductTextHighlight;
 
     @FindBy(css = ".row > div")
+
     protected List<WebElement> productsList;
 
-    @FindBy(css = ".row > div > div > a > div > div + div > div:nth-child(1) > div:nth-child(1)")
+    @FindBy(css = ".shopee-search-item-result__item > a > div > div > div + div > div:nth-child(1) > div:nth-child(1)")
     protected List<WebElement> productsTitle;
     //--------------------------------------------------------------------------------------------
 
@@ -40,4 +42,5 @@ public class PageObject {
     protected WebElement productPage;
 
     //--------------------------------------------------------------------------------------------
+
 }
