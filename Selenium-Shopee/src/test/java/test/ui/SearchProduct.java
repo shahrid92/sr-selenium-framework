@@ -7,7 +7,7 @@ import pageObjectRepo.ResultsPage;
 
 public class SearchProduct extends TestDriverClass {
 
-    @Test(enabled = true, priority = 1)
+    @Test(enabled = true)
     public void SelectProduct(){
 
         LandingPage lp = new LandingPage(driver);
@@ -21,7 +21,7 @@ public class SearchProduct extends TestDriverClass {
                 .SearchProductionSelection();
     }
 
-    @Test(enabled = true, priority =2)
+    @Test(enabled = true)
     public void RandomSelectProduct(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -33,7 +33,7 @@ public class SearchProduct extends TestDriverClass {
                 .SelectRandomProduct();
     }
 
-    @Test(enabled = true, priority = 3)
+    @Test(enabled = true)
     public void SearchAppleProduct(){
         LandingPage lp = new LandingPage(driver);
         lp

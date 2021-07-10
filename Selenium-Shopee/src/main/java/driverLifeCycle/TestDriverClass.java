@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
+
 import java.util.Properties;
 
 @Listeners(common.listener.testListener.class)
