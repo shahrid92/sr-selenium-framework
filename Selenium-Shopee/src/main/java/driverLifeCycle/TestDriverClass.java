@@ -65,8 +65,8 @@ public class TestDriverClass  {
 
         //Set Headless Options
         ChromeOptions options = new ChromeOptions();
-        options.addArguments(headlessArgs);
-        options.addArguments(disableGpuArgs);
+        //options.addArguments(headlessArgs);
+        //options.addArguments(disableGpuArgs);
         options.addArguments(maxWindowsArgs);
 
         this.driver = new ChromeDriver(options);

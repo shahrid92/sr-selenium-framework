@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import org.testng.asserts.SoftAssert;
 
@@ -15,28 +18,32 @@ import static com.google.common.truth.Truth.assert_;
 public class SearchFilterSection extends PageObject{
 
     private static final Logger LOGGER = LogManager.getLogger(SearchFilterSection.class);
-    private SoftAssert softAssert;
-
     @FindBy(css =".shopee-checkbox__label")
     private List<WebElement> shippedFromElements;
 
     @FindBy(css =".shopee-filter-group__toggle-btn")
     private List<WebElement> filterMoreButton;
 
-    public SearchFilterSection(WebDriver driver,SoftAssert softAssert){
+    @FindBy(css =".shopee-price-range-filter__input")
+    private List<WebElement> priceRangeFields;
+
+    @FindBy(css =".shopee-button-solid--primary")
+    private List<WebElement> filterPrimaryButton;
+
+   @FindBy(css ="div[data-sqe=item] > a > div > div > div:nth-child(2) > div:nth-child(2) > div > span:nth-child(2)")
+   private List<WebElement> productPrice;
+
+    public SearchFilterSection(WebDriver driver){
         super(driver);
-        this.softAssert = softAssert;
     }
 
     public SearchFilterSection shippedFrom(){
 
-
-
         String[] state = {
-                "East Malaysia",
                 "Local",
                 "Overseas",
                 "West Malaysia",
+                "East Malaysia",
                 "Selangor",
                 "Kuala Lumpur",
                 "Penang",
@@ -58,18 +65,17 @@ public class SearchFilterSection extends PageObject{
         filterMoreButton.get(0).click();
 
         for(int i=0;i<state.length-1;i++){
-            shippedFromElements.get(i).click();
+
             wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
-            assert_().withMessage("Test Placeholder").that(productsListPlaceholder.isDisplayed()).isTrue();
-            shippedFromElements.get(i).click();
+            assert_().withMessage("Test Placeholder").that(shippedFromElements.get(i).getAttribute("outerText")).contains(state[i]);
         }
 
         return this;
     }
 
-    public SearchFilterSection byCatergory(){
+    public SearchFilterSection byCatergory(int byCatIndexStart,int byCatIndexEnd){
 
-
+        SoftAssert softAssert = new SoftAssert();
 
         String[] cat = {
                 "Modems & Wireless Routers (55k+)",
@@ -86,25 +92,57 @@ public class SearchFilterSection extends PageObject{
                 "Kitchenwares (1k+)"
         };
 
-        int byCatIndexStart = 20;
-        int byCatIndexEnd = 32;
-
         filterMoreButton.get(1).click();
 
         for(int i=byCatIndexStart;i<byCatIndexEnd;i++){
             shippedFromElements.get(i).click();
             wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
-
             softAssert.assertEquals(shippedFromElements.get(i).getAttribute("outerText"),cat[i-byCatIndexStart]);
-            //assert_().withMessage("Test Placeholder").that(shippedFromElements.get(i).getAttribute("outerText")).contains(cat[i-byCatIndexStart]);
-            LOGGER.info(cat[i-byCatIndexStart] +"Verified");
             shippedFromElements.get(i).click();
-
         }
 
-        //LOGGER.info("Test : byCatergory Pass");
+        softAssert.assertAll();
 
         return this;
     }
 
+    public SearchFilterSection priceRange(int priceFrom, int priceTo ){
+
+        ArrayList<Double> proPrice = new ArrayList<Double>();
+
+        js.scrollPageDown(4,1000,0);
+
+        priceRangeFields.get(0).sendKeys("");
+        priceRangeFields.get(1).sendKeys("");
+        priceRangeFields.get(0).sendKeys(String.valueOf(priceFrom));
+        priceRangeFields.get(1).sendKeys(String.valueOf(priceTo));
+        filterPrimaryButton.get(0).click();
+
+        js.scrollPageDown(4,1000,0);
+        js.scrollPageDown(4,0,1000);
+
+        wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
+        NumberFormat format = NumberFormat.getNumberInstance();
+
+        for(int i=0;i<productPrice.size();i++){
+            try{
+                Number number = format.parse(productPrice.get(i).getAttribute("outerText"));
+                if(Double.parseDouble(number.toString()) < priceTo ){
+                    proPrice.add(Double.parseDouble(number.toString()));
+                }
+
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        double avg =0, subtotal = 0;
+        for(int j=0;j<proPrice.size();j++){
+            subtotal = subtotal + proPrice.get(j);
+            avg = subtotal/proPrice.size();
+        }
+        System.out.println(avg);
+        assert_().withMessage("Test Failed").that(avg).isLessThan(priceTo);
+
+        return this;
+    }
 }

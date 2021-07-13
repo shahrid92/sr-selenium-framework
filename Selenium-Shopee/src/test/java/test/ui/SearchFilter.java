@@ -17,12 +17,12 @@ public class SearchFilter extends TestDriverClass {
                 .languageHomeSelection("English")
                 .adsModalDisplay()
                 .searchProducts("Roadbike");
-        SearchFilterSection sfs = new SearchFilterSection(driver,softAssert);
+        SearchFilterSection sfs = new SearchFilterSection(driver);
         sfs
                 .shippedFrom();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_ByCatergory_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -30,11 +30,24 @@ public class SearchFilter extends TestDriverClass {
                 .adsModalDisplay()
                 .searchProducts("Router");
 
-        SearchFilterSection sfs = new SearchFilterSection(driver,softAssert);
+        SearchFilterSection sfs = new SearchFilterSection(driver);
         sfs
-                .byCatergory();
+                .byCatergory(20,31);
         softAssert.assertAll();
 
+    }
+
+    @Test(enabled = true)
+    public void Filter_priceRange_Test(){
+        LandingPage lp = new LandingPage(driver);
+        lp
+                .languageHomeSelection("English")
+                .adsModalDisplay()
+                .searchProducts("Battery");
+
+        SearchFilterSection sfs = new SearchFilterSection(driver);
+        sfs
+                .priceRange(2,3);
     }
 
 }
