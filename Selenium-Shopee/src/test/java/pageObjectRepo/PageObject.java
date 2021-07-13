@@ -43,6 +43,11 @@ public class PageObject{
     @FindBy(css = ".page-product")
     protected WebElement productPage;
 
+
+
+    @FindBy(css = "div[data-sqe='name'] > div:nth-child(1) > div")
+    protected List<WebElement> productListTitles;
+
     //--------------------------------------------------------------------------------------------
 
 }

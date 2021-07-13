@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -32,6 +33,12 @@ public class SearchFilterSection extends PageObject{
 
    @FindBy(css ="div[data-sqe=item] > a > div > div > div:nth-child(2) > div:nth-child(2) > div > span:nth-child(2)")
    private List<WebElement> productPrice;
+
+    @FindAll({
+            @FindBy(css =".shopee-brands-filter > div:nth-child(2) > div.shopee-checkbox-filter > div > label"),
+            @FindBy(css =".shopee-brands-filter > div:nth-child(2) > div:nth-child(5) > .stardust-dropdown__item-body > div > div > div > label")
+    })
+    private List<WebElement> brandListALL;
 
     public SearchFilterSection(WebDriver driver){
         super(driver);
@@ -142,6 +149,36 @@ public class SearchFilterSection extends PageObject{
         }
         System.out.println(avg);
         assert_().withMessage("Test Failed").that(avg).isLessThan(priceTo);
+
+        return this;
+    }
+
+    public SearchFilterSection byBrands(String brand){
+
+        filterMoreButton.get(2).click();
+        System.out.println(brandListALL.size());
+
+        int found=0;
+        for(int i=0;i<brandListALL.size();i++){
+            if(brandListALL.get(i).getAttribute("outerText").contains(brand)){
+                brandListALL.get(i).click();
+                found=1;
+                break;
+            }
+        }
+
+        assert_().withMessage("Brands not found").that(found).isEqualTo(1);
+        wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
+
+        try{
+            wait(10000);
+        }catch(Exception e){
+
+        }
+        js.scrollPageDown(4,1000,0);
+        js.scrollPageDown(4,0,1000);
+
+
 
         return this;
     }
