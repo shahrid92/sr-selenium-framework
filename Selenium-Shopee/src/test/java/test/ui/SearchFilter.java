@@ -50,7 +50,7 @@ public class SearchFilter extends TestDriverClass {
                 .priceRange(2,3);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_byBrands_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -61,6 +61,18 @@ public class SearchFilter extends TestDriverClass {
         SearchFilterSection sfs = new SearchFilterSection(driver);
         sfs
                 .byBrands("IKEA");
+    }
+
+    @Test(enabled = true)
+    public void Filter_byShopType(){
+        LandingPage lp = new LandingPage(driver);
+        lp
+                .languageHomeSelection("English")
+                .adsModalDisplay()
+                .searchProducts("toys");
+        SearchFilterSection sfs = new SearchFilterSection(driver);
+        sfs
+                .byShopType();
     }
 
 }

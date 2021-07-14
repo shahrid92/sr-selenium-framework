@@ -33,7 +33,6 @@ public class PageObject{
     @FindBy(css = ".shopee-search-item-result__item > a > div > div > div + div > div:nth-child(1) > div:nth-child(1)")
     protected List<WebElement> productsTitle;
 
-
     @FindBy(css = ".shopee-search-item-result__items")
     protected WebElement productsListPlaceholder;
     //--------------------------------------------------------------------------------------------
@@ -42,8 +41,6 @@ public class PageObject{
     //--------------------------------------------------------------------------------------------
     @FindBy(css = ".page-product")
     protected WebElement productPage;
-
-
 
     @FindBy(css = "div[data-sqe='name'] > div:nth-child(1) > div")
     protected List<WebElement> productListTitles;

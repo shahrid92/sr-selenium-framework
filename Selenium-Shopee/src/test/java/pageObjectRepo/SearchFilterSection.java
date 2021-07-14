@@ -40,6 +40,9 @@ public class SearchFilterSection extends PageObject{
     })
     private List<WebElement> brandListALL;
 
+    @FindBy(css =".shopee-filter-group:nth-child(7) > div:nth-child(2) > div > div > label")
+    private List<WebElement> shopType;
+
     public SearchFilterSection(WebDriver driver){
         super(driver);
     }
@@ -178,7 +181,15 @@ public class SearchFilterSection extends PageObject{
         js.scrollPageDown(4,1000,0);
         js.scrollPageDown(4,0,1000);
 
+        return this;
+    }
 
+    public SearchFilterSection byShopType(){
+
+        shopType.forEach((e)->{
+            e.click();
+            wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
+        });
 
         return this;
     }
