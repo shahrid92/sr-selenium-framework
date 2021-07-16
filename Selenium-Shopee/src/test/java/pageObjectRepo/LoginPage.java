@@ -25,24 +25,31 @@ public class LoginPage extends PageObject {
     @FindBy(css = "button")
     private WebElement login2;
 
-    @FindBy(css = "div[role='button'] > div:nth-child(2)")
-    private WebElement GotItButton;
+    @FindBy(css = ".RveJvd")
+    private List<WebElement> GotItButton;
+
+    @FindBy(css = ".RveJvd")
+    private WebElement UnknownElements;
+
+    @FindBy(css=".stardust-toast__container")
+    private WebElement googleFailedToast;
 
     public LoginPage(WebDriver driver){
         super(driver);
     }
 
     public LoginPage loginByGoogle(){
-        System.out.println("Found -- 1");
+
         login.forEach((e)->{
-            System.out.println("Searching... "+e.getAttribute("outerText"));
             if(e.getAttribute("outerText").contains("Google")){
-                System.out.println("Found");
+
                 assert_().withMessage("Login Failed").that(e.getAttribute("outerText")).contains("Google");
                 wait.until(ExpectedConditions.elementToBeClickable(e));
                 e.click();
-                wait.until(ExpectedConditions.elementToBeClickable(e));
+                wait.until(ExpectedConditions.invisibilityOf(googleFailedToast));
                 e.click();
+
+                String winHandleBefore = driver.getWindowHandle();
                 Set<String> s1 = driver.getWindowHandles();
                 Iterator<String> i1 = s1.iterator();
                 while(i1.hasNext())
@@ -51,15 +58,18 @@ public class LoginPage extends PageObject {
                     if(driver.switchTo().window(i1.next()).getTitle().contains("Sign in – Google accounts")){
 
                         inputEmail.sendKeys("shahridzuan.aws@gmail.com");
-                        login2.click();
-                        GotItButton.click();
-                        gmailAccLists.forEach((g)->{
-                            System.out.println(g.getAttribute("data-identifier"));
-                        });
+                         login2.click();
+                         wait.until(ExpectedConditions.elementToBeClickable(GotItButton.get(1)));
+                         GotItButton.get(1).click();
+                         driver.close();
+
                     }
 
                 }
 
+                driver.switchTo().window(winHandleBefore);
+                e.click();
+                wait.until(ExpectedConditions.visibilityOf(googleFailedToast));
 
             }
         });

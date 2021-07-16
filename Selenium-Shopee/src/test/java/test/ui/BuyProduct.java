@@ -25,10 +25,6 @@ public class BuyProduct extends TestDriverClass  {
         mpp
                 .addToCartProduct();
 
-//        CartPage cp = new CartPage(driver);
-//        cp
-//                .verifyShoppingCartPage();
-
         LoginPage lgnp = new LoginPage(driver);
         lgnp
                 .loginByGoogle();

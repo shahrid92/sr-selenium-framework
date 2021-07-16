@@ -19,7 +19,7 @@ public class PageObject {
     public PageObject(WebDriver driver){
         this.driver = driver;
         js = new JsExecuteHelper( this.driver);
-        wait = new WebDriverWait( this.driver,10);
+        wait = new WebDriverWait( this.driver,100);
         PageFactory.initElements( this.driver, this);
     }
 
