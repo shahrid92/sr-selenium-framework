@@ -1,5 +1,6 @@
 package driverLifeCycle;
 
+import common.driver.RemoteWebDriver;
 import common.helper.JsExecuteHelper;
 import common.properties.readPropertiesFile;
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -15,24 +17,9 @@ import java.util.Properties;
 
 @Listeners(common.listener.testListener.class)
 
-public class TestDriverClass  {
+public class TestDriverClass extends RemoteWebDriver {
 
-    /*
-    *  TODO:
-    *   1. Add test listeners
-    *   2. Add more test cases
-    *   3. Seperate get config values
-    *   4. screenshot failed test case at itestlistener
-    *
-    *
-    *
-    *
-    *
-    *
-    *
-    * */
-
-    protected WebDriver driver;
+    //protected WebDriver driver;
     private Properties p;
     private String url;
     private String browserDriver,browserDriverPath;
@@ -50,6 +37,9 @@ public class TestDriverClass  {
                 headlessArgs = readPropertiesFile.Property().getProperty("chrome.options.headless");
                 disableGpuArgs = readPropertiesFile.Property().getProperty("chrome.options.gpu");
                 maxWindowsArgs = readPropertiesFile.Property().getProperty("chrome.options.windows");
+                System.out.println("START!!");
+                //RemoteWebDriver rw = new RemoteWebDriver();
+                chromeStart();
                 break;
 
             case "firefox":
@@ -61,21 +51,20 @@ public class TestDriverClass  {
         }
 
         //Set System Property
-        System.setProperty(browserDriver,browserDriverPath);
+      //  System.setProperty(browserDriver,browserDriverPath);
 
         //Set Headless Options
-        ChromeOptions options = new ChromeOptions();
+        //ChromeOptions options = new ChromeOptions();
         //options.addArguments(headlessArgs);
         //options.addArguments(disableGpuArgs);
-        options.addArguments(maxWindowsArgs);
+       // options.addArguments(maxWindowsArgs);
 
-        this.driver = new ChromeDriver(options);
+       // this.driver = new ChromeDriver(options);
 
         LOG.info("Starting Webdriver " + browser);
 
         //Max Screen Size
-        driver.manage().window().maximize();
-        this.driver.get(url);
+        //driver.manage().window().maximize();
     }
 
     @AfterMethod

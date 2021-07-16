@@ -79,7 +79,8 @@ public class LandingPage extends PageObject {
         searchBtn.click();
 
         ResultsPage rp = new ResultsPage(driver);
-        rp.VerifyProductHighlighted();
+        rp
+                .VerifyProductHighlighted();
 
         return this;
     }

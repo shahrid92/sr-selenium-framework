@@ -11,6 +11,9 @@ public class MainProductPage extends PageObject {
     @FindBy(css =".flex-auto .flex-column > div > span")
     private WebElement main_product_title;
 
+    @FindBy(css=".btn-tinted.btn--l")
+    private WebElement addToCartButton;
+
     public MainProductPage (WebDriver driver){
         super(driver);
     }
@@ -19,6 +22,11 @@ public class MainProductPage extends PageObject {
     public MainProductPage VerifyMainProductTitle(){
         assert_().that(main_product_title.getAttribute("outerText")).isNotEmpty();
         System.out.println(main_product_title.getAttribute("outerText"));
+        return this;
+    }
+
+    public MainProductPage addToCartProduct(){
+        addToCartButton.click();
         return this;
     }
 

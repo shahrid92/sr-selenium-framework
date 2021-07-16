@@ -4,8 +4,9 @@
     <parameter name="browser" value="chrome"/>
     <test name="To test shopee search product and filters">
         <classes>
-<!--            <class name="test.ui.SearchProduct" />-->
+            <class name="test.ui.SearchProduct" />
             <class name="test.ui.SearchFilter" />
+            <class name="test.ui.BuyProduct" />
         </classes>
     </test>
 </suite>

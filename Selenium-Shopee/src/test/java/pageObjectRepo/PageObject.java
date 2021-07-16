@@ -1,6 +1,8 @@
 package pageObjectRepo;
 
 import common.helper.JsExecuteHelper;
+import driverLifeCycle.TestDriverClass;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,17 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class PageObject{
+public class PageObject {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected JsExecuteHelper js;
 
-
     public PageObject(WebDriver driver){
         this.driver = driver;
-        js = new JsExecuteHelper(this.driver);
-        wait = new WebDriverWait(driver,30);
-        PageFactory.initElements(driver, this);
+        js = new JsExecuteHelper( this.driver);
+        wait = new WebDriverWait( this.driver,10);
+        PageFactory.initElements( this.driver, this);
     }
 
     //Search Results Page
