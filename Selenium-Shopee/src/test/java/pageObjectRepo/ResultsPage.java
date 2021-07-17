@@ -12,13 +12,6 @@ import static com.google.common.truth.Truth.assert_;
 
 public class ResultsPage extends PageObject {
 
-    /*
-    * Helper :
-    * - wait
-    * - js
-    *
-    */
-
     public ResultsPage(WebDriver driver){
         super(driver);
     }

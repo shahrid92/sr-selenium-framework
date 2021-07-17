@@ -1,17 +1,11 @@
 package driverLifeCycle;
 
 import common.driver.RemoteWebDriver;
-import common.helper.JsExecuteHelper;
 import common.properties.readPropertiesFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
+
 
 import java.util.Properties;
 
@@ -19,11 +13,6 @@ import java.util.Properties;
 
 public class TestDriverClass extends RemoteWebDriver {
 
-    //protected WebDriver driver;
-    private Properties p;
-    private String url;
-    private String browserDriver,browserDriverPath;
-    private String headlessArgs,disableGpuArgs,maxWindowsArgs;
     private static final Logger LOG = LogManager.getLogger(TestDriverClass.class);
 
     @BeforeMethod
@@ -31,14 +20,6 @@ public class TestDriverClass extends RemoteWebDriver {
     public void mainDriver(String browser) {
         switch(browser){
             case "chrome" :
-                url = readPropertiesFile.Property().getProperty("targetUrl");
-                browserDriver = readPropertiesFile.Property().getProperty("driver.chrome");
-                browserDriverPath = readPropertiesFile.Property().getProperty("driver.chrome.path");
-                headlessArgs = readPropertiesFile.Property().getProperty("chrome.options.headless");
-                disableGpuArgs = readPropertiesFile.Property().getProperty("chrome.options.gpu");
-                maxWindowsArgs = readPropertiesFile.Property().getProperty("chrome.options.windows");
-                System.out.println("START!!");
-                //RemoteWebDriver rw = new RemoteWebDriver();
                 chromeStart();
                 break;
 

@@ -13,27 +13,6 @@ import static com.google.common.truth.Truth.assert_;
 
 public class LoginPage extends PageObject {
 
-    @FindBy(css = "button")
-    private List<WebElement> login;
-
-    @FindBy(css = "[data-authuser]")
-    private List<WebElement> gmailAccLists;
-
-    @FindBy(css = "input[type='email']")
-    private WebElement inputEmail;
-
-    @FindBy(css = "button")
-    private WebElement login2;
-
-    @FindBy(css = ".RveJvd")
-    private List<WebElement> GotItButton;
-
-    @FindBy(css = ".RveJvd")
-    private WebElement UnknownElements;
-
-    @FindBy(css=".stardust-toast__container")
-    private WebElement googleFailedToast;
-
     public LoginPage(WebDriver driver){
         super(driver);
     }

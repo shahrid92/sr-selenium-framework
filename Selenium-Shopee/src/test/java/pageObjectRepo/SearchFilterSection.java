@@ -19,29 +19,6 @@ import static com.google.common.truth.Truth.assert_;
 public class SearchFilterSection extends PageObject{
 
     private static final Logger LOGGER = LogManager.getLogger(SearchFilterSection.class);
-    @FindBy(css =".shopee-checkbox__label")
-    private List<WebElement> shippedFromElements;
-
-    @FindBy(css =".shopee-filter-group__toggle-btn")
-    private List<WebElement> filterMoreButton;
-
-    @FindBy(css =".shopee-price-range-filter__input")
-    private List<WebElement> priceRangeFields;
-
-    @FindBy(css =".shopee-button-solid--primary")
-    private List<WebElement> filterPrimaryButton;
-
-   @FindBy(css ="div[data-sqe=item] > a > div > div > div:nth-child(2) > div:nth-child(2) > div > span:nth-child(2)")
-   private List<WebElement> productPrice;
-
-    @FindAll({
-            @FindBy(css =".shopee-brands-filter > div:nth-child(2) > div.shopee-checkbox-filter > div > label"),
-            @FindBy(css =".shopee-brands-filter > div:nth-child(2) > div:nth-child(5) > .stardust-dropdown__item-body > div > div > div > label")
-    })
-    private List<WebElement> brandListALL;
-
-    @FindBy(css =".shopee-filter-group:nth-child(7) > div:nth-child(2) > div > div > label")
-    private List<WebElement> shopType;
 
     public SearchFilterSection(WebDriver driver){
         super(driver);

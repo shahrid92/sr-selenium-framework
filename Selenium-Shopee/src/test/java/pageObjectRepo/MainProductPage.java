@@ -8,12 +8,6 @@ import static com.google.common.truth.Truth.assert_;
 
 public class MainProductPage extends PageObject {
 
-    @FindBy(css =".flex-auto .flex-column > div > span")
-    private WebElement main_product_title;
-
-    @FindBy(css=".btn-tinted.btn--l")
-    private WebElement addToCartButton;
-
     public MainProductPage (WebDriver driver){
         super(driver);
     }

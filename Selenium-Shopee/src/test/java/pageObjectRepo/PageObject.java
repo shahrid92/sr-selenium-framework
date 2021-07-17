@@ -5,6 +5,7 @@ import driverLifeCycle.TestDriverClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,12 +20,11 @@ public class PageObject {
     public PageObject(WebDriver driver){
         this.driver = driver;
         js = new JsExecuteHelper( this.driver);
-        wait = new WebDriverWait( this.driver,100);
+        wait = new WebDriverWait( this.driver,10);
         PageFactory.initElements( this.driver, this);
     }
 
     //Search Results Page
-    //--------------------------------------------------------------------------------------------
     @FindBy(css = ".shopee-search-result-header__text-highlight")
     protected WebElement searchedProductTextHighlight;
 
@@ -36,16 +36,105 @@ public class PageObject {
 
     @FindBy(css = ".shopee-search-item-result__items")
     protected WebElement productsListPlaceholder;
-    //--------------------------------------------------------------------------------------------
 
     //Product Page
-    //--------------------------------------------------------------------------------------------
     @FindBy(css = ".page-product")
     protected WebElement productPage;
 
     @FindBy(css = "div[data-sqe='name'] > div:nth-child(1) > div")
     protected List<WebElement> productListTitles;
 
-    //--------------------------------------------------------------------------------------------
+    //Shopping Cart Page
+    @FindBy(css=".cart-drawer")
+    protected WebElement cartPage;
+
+    @FindBy(css=".shopee-input-quantity > button")
+    protected List<WebElement> quantityProduct_AddRemoveButton;
+
+    @FindBy(css=".shopee-input-quantity > input")
+    protected WebElement quantityProduct_InputQuantity;
+
+    @FindBy(css=".cart-page-logo__page-name")
+    protected WebElement shoppingCartTitlePage;
+
+    //Landing Page
+    @FindBy(css =".language-selection")
+    protected WebElement LanguageBox;
+
+    @FindBy(css = ".language-selection__list-item")
+    protected List<WebElement> languageSelection;
+
+    @FindBy(css = ".shopee-popup__container")
+    protected WebElement adsModal;
+
+    @FindBy(css = ".header-with-search__logo-section")
+    protected WebElement logoHeader;
+
+    @FindBy(css = ".shopee-searchbar-input > input")
+    protected WebElement searchBar;
+
+    @FindBy(css = ".btn")
+    protected WebElement searchBtn;
+
+    @FindBy(css = ".shopee-popup__close-btn")
+    protected WebElement adsModalCloseBtn;
+
+    @FindBy(css = ".shopee-popup__overlay")
+    protected WebElement overlay;
+
+    //Login Page
+    @FindBy(css = "button")
+    protected List<WebElement> login;
+
+    @FindBy(css = "[data-authuser]")
+    protected List<WebElement> gmailAccLists;
+
+    @FindBy(css = "input[type='email']")
+    protected WebElement inputEmail;
+
+    @FindBy(css = "button")
+    protected WebElement login2;
+
+    @FindBy(css = ".RveJvd")
+    protected List<WebElement> GotItButton;
+
+    @FindBy(css = ".RveJvd")
+    protected WebElement UnknownElements;
+
+    @FindBy(css=".stardust-toast__container")
+    protected WebElement googleFailedToast;
+
+    //Main Product Page
+    @FindBy(css =".flex-auto .flex-column > div > span")
+    protected WebElement main_product_title;
+
+    @FindBy(css=".btn-tinted.btn--l")
+    protected WebElement addToCartButton;
+
+    //Search filter section
+    @FindBy(css =".shopee-checkbox__label")
+    protected List<WebElement> shippedFromElements;
+
+    @FindBy(css =".shopee-filter-group__toggle-btn")
+    protected List<WebElement> filterMoreButton;
+
+    @FindBy(css =".shopee-price-range-filter__input")
+    protected List<WebElement> priceRangeFields;
+
+    @FindBy(css =".shopee-button-solid--primary")
+    protected List<WebElement> filterPrimaryButton;
+
+    @FindBy(css ="div[data-sqe=item] > a > div > div > div:nth-child(2) > div:nth-child(2) > div > span:nth-child(2)")
+    protected List<WebElement> productPrice;
+
+    @FindAll({
+            @FindBy(css =".shopee-brands-filter > div:nth-child(2) > div.shopee-checkbox-filter > div > label"),
+            @FindBy(css =".shopee-brands-filter > div:nth-child(2) > div:nth-child(5) > .stardust-dropdown__item-body > div > div > div > label")
+    })
+    protected List<WebElement> brandListALL;
+
+    @FindBy(css =".shopee-filter-group:nth-child(7) > div:nth-child(2) > div > div > label")
+    protected List<WebElement> shopType;
+
 
 }

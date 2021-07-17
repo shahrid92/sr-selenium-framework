@@ -11,22 +11,6 @@ import static com.google.common.truth.Truth.assert_;
 
 public class CartPage extends PageObject {
 
-
-
-    @FindBy(css=".cart-drawer")
-    private WebElement cartPage;
-
-    @FindBy(css=".shopee-input-quantity > button")
-    private List<WebElement> quantityProduct_AddRemoveButton;
-
-    @FindBy(css=".shopee-input-quantity > input")
-    private WebElement quantityProduct_InputQuantity;
-
-    @FindBy(css=".cart-page-logo__page-name")
-    private WebElement shoppingCartTitlePage;
-
-
-
     public CartPage(WebDriver driver){
         super(driver);
     }

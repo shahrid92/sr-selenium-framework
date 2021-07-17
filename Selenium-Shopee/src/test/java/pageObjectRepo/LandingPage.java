@@ -14,37 +14,6 @@ import java.util.List;
 
 public class LandingPage extends PageObject {
 
-    @FindBy(css =".language-selection")
-    private WebElement LanguageBox;
-
-    @FindBy(css = ".language-selection__list-item")
-    private List<WebElement> languageSelection;
-
-    @FindBy(css = ".shopee-popup__container")
-    private WebElement adsModal;
-
-    @FindBy(css = ".header-with-search__logo-section")
-    private WebElement logoHeader;
-
-    @FindBy(css = ".shopee-searchbar-input > input")
-    private WebElement searchBar;
-
-    @FindBy(css = ".btn")
-    private WebElement searchBtn;
-
-    @FindBy(css = ".shopee-popup__close-btn")
-    private WebElement adsModalCloseBtn;
-
-    @FindBy(css = ".shopee-popup__overlay")
-    private WebElement overlay;
-
-    /*
-
-    @FindBy(css = "")
-    private WebElement ;
-
-    * */
-
     public LandingPage(WebDriver driver){
         super(driver);
     }
