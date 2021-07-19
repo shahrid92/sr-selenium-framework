@@ -10,7 +10,7 @@ public class SearchFilter extends TestDriverClass {
 
     SoftAssert softAssert = new SoftAssert();
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_ShippedFrom_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -22,7 +22,7 @@ public class SearchFilter extends TestDriverClass {
                 .shippedFrom();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_ByCatergory_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -37,7 +37,7 @@ public class SearchFilter extends TestDriverClass {
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_priceRange_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -50,7 +50,7 @@ public class SearchFilter extends TestDriverClass {
                 .priceRange(2,3);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_byBrands_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -63,7 +63,7 @@ public class SearchFilter extends TestDriverClass {
                 .byBrands("IKEA");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void Filter_byShopType(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -73,6 +73,18 @@ public class SearchFilter extends TestDriverClass {
         SearchFilterSection sfs = new SearchFilterSection(driver);
         sfs
                 .byShopType();
+    }
+
+    @Test(enabled = true)
+    public void Filter_SortBy(){
+        LandingPage lp = new LandingPage(driver);
+        lp
+                .languageHomeSelection("English")
+                .adsModalDisplay()
+                .searchProducts("perodua");
+        SearchFilterSection sfs = new SearchFilterSection(driver);
+        sfs
+                .SortBy_Test();
     }
 
 }

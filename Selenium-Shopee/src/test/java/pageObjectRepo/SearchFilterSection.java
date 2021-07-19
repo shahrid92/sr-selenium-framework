@@ -3,17 +3,10 @@ package pageObjectRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import org.testng.asserts.SoftAssert;
-
-
 import static com.google.common.truth.Truth.assert_;
 
 public class SearchFilterSection extends PageObject{
@@ -136,7 +129,6 @@ public class SearchFilterSection extends PageObject{
     public SearchFilterSection byBrands(String brand){
 
         filterMoreButton.get(2).click();
-        System.out.println(brandListALL.size());
 
         int found=0;
         for(int i=0;i<brandListALL.size();i++){
@@ -169,5 +161,24 @@ public class SearchFilterSection extends PageObject{
         });
 
         return this;
+    }
+
+    public SearchFilterSection SortBy_Test(){
+
+        assert_().withMessage("Failed").that(sortByElements.get(0).getAttribute("outerText").contains("Relevance")).isTrue();
+        assert_().withMessage("Failed").that(sortByElements.get(1).getAttribute("outerText").contains("Latest")).isTrue();
+        assert_().withMessage("Failed").that(sortByElements.get(2).getAttribute("outerText").contains("Top Sales")).isTrue();
+
+        sortByElements.get(0).click();
+        wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
+
+        sortByElements.get(1).click();
+        wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
+
+        sortByElements.get(2).click();
+        wait.until(ExpectedConditions.visibilityOf(productsListPlaceholder));
+
+        return this;
+
     }
 }

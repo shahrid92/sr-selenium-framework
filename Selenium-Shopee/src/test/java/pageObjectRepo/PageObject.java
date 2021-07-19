@@ -136,5 +136,9 @@ public class PageObject {
     @FindBy(css =".shopee-filter-group:nth-child(7) > div:nth-child(2) > div > div > label")
     protected List<WebElement> shopType;
 
+    @FindBy(css =".shopee-sort-by-options > div")
+    protected List<WebElement> sortByElements;
+
+
 
 }
