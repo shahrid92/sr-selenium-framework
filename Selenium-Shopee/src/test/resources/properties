@@ -9,5 +9,7 @@ chrome.options.gpu=--disable-gpu
 chrome.options.windows=--window-size=1400,800
 
 # FireFox Properties
+driver.firefox=webdriver.firefox.driver
+driver.firefox.path=src/main/resources/firefox/geckodriver.exe
 
 # Safari Properties

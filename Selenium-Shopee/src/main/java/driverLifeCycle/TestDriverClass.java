@@ -24,6 +24,7 @@ public class TestDriverClass extends RemoteWebDriver {
                 break;
 
             case "firefox":
+                firefoxStart();
                 break;
 
             case "IE":
@@ -31,27 +32,14 @@ public class TestDriverClass extends RemoteWebDriver {
 
         }
 
-        //Set System Property
-      //  System.setProperty(browserDriver,browserDriverPath);
-
-        //Set Headless Options
-        //ChromeOptions options = new ChromeOptions();
-        //options.addArguments(headlessArgs);
-        //options.addArguments(disableGpuArgs);
-       // options.addArguments(maxWindowsArgs);
-
-       // this.driver = new ChromeDriver(options);
-
         LOG.info("Starting Webdriver " + browser);
 
-        //Max Screen Size
-        //driver.manage().window().maximize();
     }
 
     @AfterMethod
     public void closingDriver(){
         LOG.info("Terminating WebDriver");
         driver.close();
-        driver.quit();
+      //  driver.quit();
     }
 }
