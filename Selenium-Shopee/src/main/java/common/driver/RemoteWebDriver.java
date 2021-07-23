@@ -1,6 +1,7 @@
 package common.driver;
 
 import common.driver.browsers.ChromeWebDriver;
+import common.driver.browsers.EdgeWebDriver;
 import common.driver.browsers.FirefoxWebDriver;
 import common.helper.ReadConfig;
 import org.checkerframework.checker.units.qual.C;
@@ -21,6 +22,11 @@ public class RemoteWebDriver {
     protected void firefoxStart(){
         FirefoxWebDriver ff = new FirefoxWebDriver();
         driver = ff.getDriver();
+    }
+
+    protected void edgeStart(){
+        EdgeWebDriver ew = new EdgeWebDriver();
+        driver = ew.getDriver();
     }
 
     protected void maxBrowserWindows(){

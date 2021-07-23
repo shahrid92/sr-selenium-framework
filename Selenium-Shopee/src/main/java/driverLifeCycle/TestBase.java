@@ -23,7 +23,8 @@ public class TestBase extends RemoteWebDriver {
                 firefoxStart();
                 break;
 
-            case "IE":
+            case "edge":
+                edgeStart();
                 break;
 
         }

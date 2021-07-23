@@ -12,4 +12,6 @@ chrome.options.windows=--window-size=1400,800
 driver.firefox=webdriver.firefox.driver
 driver.firefox.path=src/main/resources/firefox/geckodriver.exe
 
-# Safari Properties
+# Edge Properties
+driver.edge=webdriver.edge.driver
+driver.firefox.path=src/main/resources/edge/msedgedriver.exe
