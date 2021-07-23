@@ -1,12 +1,12 @@
 package test.ui;
 
-import driverLifeCycle.TestDriverClass;
+import driverLifeCycle.TestBase;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageObjectRepo.LandingPage;
 import pageObjectRepo.SearchFilterSection;
 
-public class SearchFilter extends TestDriverClass {
+public class SearchFilter extends TestBase {
 
     SoftAssert softAssert = new SoftAssert();
 

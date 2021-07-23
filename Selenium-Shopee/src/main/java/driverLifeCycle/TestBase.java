@@ -1,19 +1,15 @@
 package driverLifeCycle;
 
 import common.driver.RemoteWebDriver;
-import common.properties.readPropertiesFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
 
-
-import java.util.Properties;
-
 @Listeners(common.listener.testListener.class)
 
-public class TestDriverClass extends RemoteWebDriver {
+public class TestBase extends RemoteWebDriver {
 
-    private static final Logger LOG = LogManager.getLogger(TestDriverClass.class);
+    private static final Logger LOG = LogManager.getLogger(TestBase.class);
 
     @BeforeMethod
     @Parameters({"browser"})
@@ -34,6 +30,7 @@ public class TestDriverClass extends RemoteWebDriver {
 
         LOG.info("Starting Webdriver " + browser);
 
+        maxBrowserWindows();
     }
 
     @AfterMethod

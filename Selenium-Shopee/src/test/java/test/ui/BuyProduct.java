@@ -1,11 +1,11 @@
 package test.ui;
 
-import driverLifeCycle.TestDriverClass;
+import driverLifeCycle.TestBase;
 
 import org.testng.annotations.Test;
 import pageObjectRepo.*;
 
-public class BuyProduct extends TestDriverClass  {
+public class BuyProduct extends TestBase {
 
 
     @Test(enabled = true)
