@@ -11,9 +11,9 @@ public class ReadConfig {
     private String headlessArgs,disableGpuArgs,maxWindowsArgs;
 
     public ReadConfig(String browser) {
+        url = readPropertiesFile.Property().getProperty("targetUrl");
         switch (browser) {
             case "chrome":
-                url = readPropertiesFile.Property().getProperty("targetUrl");
                 browserDriver = readPropertiesFile.Property().getProperty("driver.chrome");
                 browserDriverPath = readPropertiesFile.Property().getProperty("driver.chrome.path");
                 headlessArgs = readPropertiesFile.Property().getProperty("chrome.options.headless");
@@ -22,9 +22,14 @@ public class ReadConfig {
                 break;
 
             case "firefox":
+                browserDriver = readPropertiesFile.Property().getProperty("driver.firefox");
+                browserDriverPath = readPropertiesFile.Property().getProperty("driver.firefox.path");
+                headlessArgs = readPropertiesFile.Property().getProperty("firefox.options.headless");
                 break;
 
-            case "IE":
+            case "edge":
+                browserDriver = readPropertiesFile.Property().getProperty("driver.edge");
+                browserDriverPath = readPropertiesFile.Property().getProperty("driver.edge.path");
                 break;
 
             default:
