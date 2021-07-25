@@ -1,17 +1,11 @@
 package test.api;
-
-//import io.restassured.RestAssured;
-
-import io.restassured.path.json.JsonPath;
+import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 
 public class DemoApiTest {
@@ -23,10 +17,8 @@ public class DemoApiTest {
     public void testapi(){
 
         /*
-        *
-        *  verify json structure using hemcrest
-        *
-        *
+        * Validation json structure using hemcrest
+        * which include in rest assured dependencies (compile scope)
         * */
 
         given().get("https://shopee.com.my/api/v2/item/get?itemid=1503829152&shopid=77764945")
@@ -39,6 +31,19 @@ public class DemoApiTest {
                 .body("item.categories[0]",hasKey("is_default_subcat"))
                 .body("item.categories[0]",hasKey("block_buyer_platform"));
 
+        /*
+         * de-serialization using jayway accessing json path
+         * Library :
+         * - junit.jupiter
+         * - jayway jsonpath
+         */
+
+        String json =  given()
+                .get("https://shopee.com.my/api/v2/item/get?itemid=1503829152&shopid=77764945")
+                .asString();
+
+        String id = JsonPath.read(json, "item.itemid").toString();
+        Assertions.assertEquals("1503829152", id);
     }
 
 }
