@@ -1,4 +1,5 @@
 package test.api;
+import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -32,9 +33,9 @@ public class DemoApiTest {
                 .body("item.categories[0]",hasKey("block_buyer_platform"));
 
         /*
-         * de-serialization using jayway accessing json path
+         * de-serializing using jayway accessing json path
          * Library :
-         * - junit.jupiter
+         * - junit.jupiter assertion
          * - jayway jsonpath
          */
 
@@ -44,6 +45,19 @@ public class DemoApiTest {
 
         String id = JsonPath.read(json, "item.itemid").toString();
         Assertions.assertEquals("1503829152", id);
+
+
+
+        String json2 =  given()
+                .get("https://shopee.com.my/api/v2/item/get?itemid=7760199745&shopid=304509804")
+                .asString();
+
+        String id2 = JsonPath.read(json2, "item.categories").toString();
+
+        Gson gson = new Gson();
+
+        CategoriesClass cat = gson.fromJson(id2, CategoriesClass.class);
+        System.out.print(cat);
     }
 
 }

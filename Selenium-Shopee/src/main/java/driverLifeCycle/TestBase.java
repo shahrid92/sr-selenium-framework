@@ -32,6 +32,7 @@ public class TestBase extends RemoteWebDriver {
         LOG.info("Starting Webdriver " + browser);
 
         maxBrowserWindows();
+
     }
 
     @AfterMethod
