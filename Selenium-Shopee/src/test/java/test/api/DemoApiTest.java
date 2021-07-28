@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import test.api.model.ItemCategoriesModel;
 
 
 public class DemoApiTest {
@@ -52,12 +53,12 @@ public class DemoApiTest {
                 .get("https://shopee.com.my/api/v2/item/get?itemid=7760199745&shopid=304509804")
                 .asString();
 
-        String id2 = JsonPath.read(json2, "item.categories").toString();
+        String id2 = JsonPath.read(json2, "item.categories[0]").toString();
 
         Gson gson = new Gson();
 
-        CategoriesClass cat = gson.fromJson(id2, CategoriesClass.class);
-        System.out.print(cat);
+        ItemCategoriesModel cat = gson.fromJson(id2, ItemCategoriesModel.class);
+        System.out.print(cat.getCatid());
     }
 
 }
