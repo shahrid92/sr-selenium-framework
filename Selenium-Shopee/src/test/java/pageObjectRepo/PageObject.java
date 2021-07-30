@@ -1,6 +1,10 @@
 package pageObjectRepo;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import common.helper.JsExecuteHelper;
+import common.reports.ExtentReportClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -20,6 +24,7 @@ public class PageObject {
         js = new JsExecuteHelper( this.driver);
         wait = new WebDriverWait( this.driver,10);
         PageFactory.initElements( this.driver, this);
+
     }
 
     //Search Results Page

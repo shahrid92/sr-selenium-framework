@@ -1,5 +1,8 @@
 package driverLifeCycle;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import common.driver.RemoteWebDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,12 +34,15 @@ public class TestBase extends RemoteWebDriver {
 
         LOG.info("Starting Webdriver " + browser);
 
+
+
         maxBrowserWindows();
 
     }
 
     @AfterMethod
     public void closingDriver(){
+
         LOG.info("Terminating WebDriver");
         driver.close();
       //  driver.quit();

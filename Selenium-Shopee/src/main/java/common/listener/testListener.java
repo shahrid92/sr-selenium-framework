@@ -1,5 +1,9 @@
 package common.listener;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import common.reports.ExtentReportClass;
 import org.testng.ITestContext ;
 import org.testng.ITestListener ;
 import org.testng.ITestResult ;
@@ -9,10 +13,15 @@ import org.apache.logging.log4j.Logger;
 public class testListener implements ITestListener {
 
     private static final Logger LOG = LogManager.getLogger(testListener.class);
+    private ExtentTest test;
+    private ExtentReports extent;
+    private ExtentReportClass erc = new ExtentReportClass();
 
     @Override
     public void onFinish(ITestContext arg0) {
         // TODO Auto-generated method stub
+
+        LOG.info(arg0.getName() + "Test Completed");
 
     }
 
@@ -20,6 +29,10 @@ public class testListener implements ITestListener {
     public void onStart(ITestContext arg0) {
         // TODO Auto-generated method stub
         LOG.info("Starting Test...");
+
+        extent = erc.getExtent();
+        test=erc.getTest();
+
     }
 
     @Override
@@ -31,7 +44,9 @@ public class testListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult arg0) {
         // TODO Auto-generated method stub
-
+        LOG.info("FAILED!");
+        test.fail("failed!!");
+        extent.flush();
     }
 
     @Override
@@ -44,11 +59,16 @@ public class testListener implements ITestListener {
     public void onTestStart(ITestResult arg0) {
         // TODO Auto-generated method stub
         LOG.info("Start Test : "+ arg0.getName());
+
+        test = extent.createTest(arg0.getName());
+       test.info("start test!");
     }
 
     @Override
     public void onTestSuccess(ITestResult arg0) {
         // TODO Auto-generated method stub
-        LOG.info(arg0.getName() + "Test Completed");
+        test.pass("PASS!!");
+        extent.flush();
+
     }
 }

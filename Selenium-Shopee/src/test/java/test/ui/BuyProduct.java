@@ -8,7 +8,7 @@ import pageObjectRepo.*;
 public class BuyProduct extends TestBase {
 
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void buyProduct_Test(){
 
         LandingPage lp = new LandingPage(driver);

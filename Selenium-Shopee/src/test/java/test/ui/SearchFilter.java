@@ -1,5 +1,9 @@
 package test.ui;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import driverLifeCycle.TestBase;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -63,7 +67,7 @@ public class SearchFilter extends TestBase {
                 .byBrands("IKEA");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Filter_byShopType(){
         LandingPage lp = new LandingPage(driver);
         lp
@@ -77,14 +81,19 @@ public class SearchFilter extends TestBase {
 
     @Test(enabled = true)
     public void Filter_SortBy(){
+
         LandingPage lp = new LandingPage(driver);
         lp
-                .languageHomeSelection("English")
+                .languageHomeSelection("Englishs")
                 .adsModalDisplay()
                 .searchProducts("perodua");
         SearchFilterSection sfs = new SearchFilterSection(driver);
         sfs
                 .SortBy_Test();
+
+
+
+
     }
 
 }
