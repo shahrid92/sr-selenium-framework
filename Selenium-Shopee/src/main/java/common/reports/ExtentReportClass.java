@@ -4,6 +4,9 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ExtentReportClass {
 
     private ExtentTest test;
@@ -11,6 +14,10 @@ public class ExtentReportClass {
 
     public ExtentReportClass(){
         extent = new ExtentReports();
+
+        extent.setSystemInfo("os", "windows10");
+        extent.setSystemInfo("Browser", "chrome");
+
         ExtentSparkReporter spark = new ExtentSparkReporter("target/Spark.html");
         extent.attachReporter(spark);
     }

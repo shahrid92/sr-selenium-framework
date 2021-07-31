@@ -33,6 +33,8 @@ public class testListener implements ITestListener {
         extent = erc.getExtent();
         test=erc.getTest();
 
+
+
     }
 
     @Override
@@ -61,7 +63,8 @@ public class testListener implements ITestListener {
         LOG.info("Start Test : "+ arg0.getName());
 
         test = extent.createTest(arg0.getName());
-       test.info("start test!");
+        test.info("start test!");
+        test.assignDevice("device-name");
     }
 
     @Override
