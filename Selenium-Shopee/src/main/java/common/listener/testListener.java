@@ -65,6 +65,7 @@ public class testListener implements ITestListener {
         test = extent.createTest(arg0.getName());
         test.info("start test!");
         test.assignDevice("device-name");
+        test.assignAuthor("author");
     }
 
     @Override

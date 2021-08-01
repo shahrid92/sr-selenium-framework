@@ -5,6 +5,8 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import driverLifeCycle.TestBase;
+import org.testng.ITestContext;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageObjectRepo.LandingPage;
@@ -68,7 +70,10 @@ public class SearchFilter extends TestBase {
     }
 
     @Test(enabled = true)
-    public void Filter_byShopType(){
+    public void Filter_byShopType(ITestContext context){
+
+        context.setAttribute("author","test author 1");
+
         LandingPage lp = new LandingPage(driver);
         lp
                 .languageHomeSelection("English")
@@ -80,11 +85,13 @@ public class SearchFilter extends TestBase {
     }
 
     @Test(enabled = true)
-    public void Filter_SortBy(){
+    public void Filter_SortBy(ITestContext context){
+
+        context.setAttribute("author","test author 2");
 
         LandingPage lp = new LandingPage(driver);
         lp
-                .languageHomeSelection("Englishs")
+                .languageHomeSelection("English")
                 .adsModalDisplay()
                 .searchProducts("perodua");
         SearchFilterSection sfs = new SearchFilterSection(driver);
