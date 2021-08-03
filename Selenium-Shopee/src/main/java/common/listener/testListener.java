@@ -2,7 +2,6 @@ package common.listener;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import common.reports.ExtentReportClass;
 import org.testng.ITestContext ;
 import org.testng.ITestListener ;
@@ -22,7 +21,6 @@ public class testListener implements ITestListener {
         // TODO Auto-generated method stub
 
         LOG.info(arg0.getName() + "Test Completed");
-
     }
 
     @Override
@@ -32,9 +30,6 @@ public class testListener implements ITestListener {
 
         extent = erc.getExtent();
         test=erc.getTest();
-
-
-
     }
 
     @Override

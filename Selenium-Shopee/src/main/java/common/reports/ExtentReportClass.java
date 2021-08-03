@@ -11,6 +11,7 @@ public class ExtentReportClass {
 
     private ExtentTest test;
     private ExtentReports extent;
+    private String browser;
 
     public ExtentReportClass(){
         extent = new ExtentReports();
@@ -44,5 +45,13 @@ public class ExtentReportClass {
 
     public void setExtent(ExtentReports extent) {
         this.extent = extent;
+    }
+
+    public String getBrowser() {
+        return browser;
+    }
+
+    public void setBrowser(String browser) {
+        this.browser = browser;
     }
 }

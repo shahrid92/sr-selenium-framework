@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import common.driver.RemoteWebDriver;
+import common.reports.ExtentReportClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
@@ -34,9 +35,6 @@ public class TestBase extends RemoteWebDriver {
         }
 
         LOG.info("Starting Webdriver " + browser);
-
-
-
         maxBrowserWindows();
 
     }
