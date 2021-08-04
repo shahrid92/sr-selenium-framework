@@ -7,6 +7,7 @@ import common.driver.RemoteWebDriver;
 import common.reports.ExtentReportClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
@@ -22,6 +23,7 @@ public class TestBase extends RemoteWebDriver {
         switch(browser){
             case "chrome" :
                 chromeStart();
+
                 break;
 
             case "firefox":

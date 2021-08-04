@@ -44,7 +44,7 @@ public class RemoteWebDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterNavigateBack(WebDriver webDriver) {
-
+        System.out.println("test from web listeners");
     }
 
     @Override

@@ -67,6 +67,9 @@ public class testListener implements ITestListener {
     public void onTestSuccess(ITestResult arg0) {
         // TODO Auto-generated method stub
         test.pass("PASS!!");
+        test.info(arg0.getInstanceName());
+        test.info(arg0.getHost());
+        test.info(arg0.getTestName());
         extent.flush();
 
     }
