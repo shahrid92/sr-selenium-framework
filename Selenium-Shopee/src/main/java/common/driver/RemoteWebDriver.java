@@ -1,20 +1,21 @@
 package common.driver;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import common.driver.browsers.ChromeWebDriver;
 import common.driver.browsers.EdgeWebDriver;
 import common.driver.browsers.FirefoxWebDriver;
-import common.helper.ReadConfig;
-import org.checkerframework.checker.units.qual.C;
+import common.reports.ExtentReportClass;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-
-import java.util.concurrent.TimeUnit;
 
 public class RemoteWebDriver {
 
     protected WebDriver driver;
     protected EventFiringWebDriver eventHandler;
+    protected ExtentReportClass erc = new ExtentReportClass();
+    protected ExtentTest test;
+    protected ExtentReports extent;
 
     protected void chromeStart(){
         ChromeWebDriver cw = new ChromeWebDriver();
@@ -22,6 +23,7 @@ public class RemoteWebDriver {
         eventHandler = new EventFiringWebDriver(driver);
         RemoteWebDriverListener remoteWebDriverListener = new RemoteWebDriverListener();
         eventHandler.register(remoteWebDriverListener);
+        extent = erc.getExtent();
     }
 
     protected void firefoxStart(){
@@ -37,8 +39,5 @@ public class RemoteWebDriver {
     protected void maxBrowserWindows(){
         driver.manage().window().maximize();
     }
-
-
-
 
 }

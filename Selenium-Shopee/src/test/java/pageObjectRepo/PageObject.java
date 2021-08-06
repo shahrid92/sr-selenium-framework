@@ -3,6 +3,7 @@ package pageObjectRepo;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import common.driver.RemoteWebDriver;
 import common.helper.JsExecuteHelper;
 import common.reports.ExtentReportClass;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class PageObject {
+public class PageObject extends RemoteWebDriver {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected JsExecuteHelper js;

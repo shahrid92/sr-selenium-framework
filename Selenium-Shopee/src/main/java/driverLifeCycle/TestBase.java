@@ -17,9 +17,14 @@ public class TestBase extends RemoteWebDriver {
 
     private static final Logger LOG = LogManager.getLogger(TestBase.class);
 
+    @BeforeClass
+    public void createReport(){
+
+    }
+
     @BeforeMethod
     @Parameters({"browser"})
-    public void mainDriver(String browser) {
+    public void mainDriver(String browser,final ITestContext testContext) {
         switch(browser){
             case "chrome" :
                 chromeStart();
@@ -38,14 +43,22 @@ public class TestBase extends RemoteWebDriver {
 
         LOG.info("Starting Webdriver " + browser);
         maxBrowserWindows();
+        System.out.println(testContext.getName());
+        test = extent.createTest("test1");
+
+        test.info("start test!");
+        test.assignDevice("device-name");
+        test.assignAuthor("author");
+
 
     }
 
     @AfterMethod
     public void closingDriver(){
-
+        extent.flush();
         LOG.info("Terminating WebDriver");
         driver.close();
       //  driver.quit();
     }
+
 }

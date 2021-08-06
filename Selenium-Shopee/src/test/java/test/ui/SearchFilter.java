@@ -69,7 +69,7 @@ public class SearchFilter extends TestBase {
                 .byBrands("IKEA");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Filter_byShopType(ITestContext context){
 
         context.setAttribute("author","test author 1");

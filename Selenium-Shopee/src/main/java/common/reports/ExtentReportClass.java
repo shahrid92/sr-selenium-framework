@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class ExtentReportClass {
 
-    private ExtentTest test;
-    private ExtentReports extent;
+    public ExtentTest test;
+    public static ExtentReports extent;
     private String browser;
 
     public ExtentReportClass(){
