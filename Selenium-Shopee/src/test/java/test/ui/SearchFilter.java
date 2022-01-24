@@ -1,12 +1,7 @@
 package test.ui;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import driverLifeCycle.TestBase;
+import BaseClass.TestBase;
 import org.testng.ITestContext;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageObjectRepo.LandingPage;
@@ -16,12 +11,12 @@ public class SearchFilter extends TestBase {
 
     SoftAssert softAssert = new SoftAssert();
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void Filter_ShippedFrom_Test(){
         LandingPage lp = new LandingPage(driver);
         lp
                 .languageHomeSelection("English")
-                .adsModalDisplay()
+                //.adsModalDisplay()
                 .searchProducts("Roadbike");
         SearchFilterSection sfs = new SearchFilterSection(driver);
         sfs

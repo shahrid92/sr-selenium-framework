@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn">
     <Properties>
-        <Property name="basePath">C:\\logs</Property>
+        <Property name="basePath">./logs</Property>
     </Properties>
 
     <Appenders>
@@ -20,6 +20,12 @@
     </Appenders>
     <Loggers>
         <Logger name="common.listener.testListener" level="debug" additivity="true">
+            <appender-ref ref="fileLogger" level="debug" />
+        </Logger>
+        <Logger name="common.driver.browsers.ChromeWebDriver" level="debug" additivity="true">
+            <appender-ref ref="fileLogger" level="debug" />
+        </Logger>
+        <Logger name="pageObjectRepo.PageObject" level="debug" additivity="true">
             <appender-ref ref="fileLogger" level="debug" />
         </Logger>
         <Root level="debug" additivity="false">

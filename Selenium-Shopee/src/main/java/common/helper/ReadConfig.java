@@ -6,12 +6,14 @@ import java.util.Properties;
 public class ReadConfig {
 
     private Properties p;
-    private String url;
+    private String url,gridurl,mode;
     private String browserDriver,browserDriverPath;
     private String headlessArgs,disableGpuArgs,maxWindowsArgs;
 
     public ReadConfig(String browser) {
         url = readPropertiesFile.Property().getProperty("targetUrl");
+        gridurl = readPropertiesFile.Property().getProperty("grid.hub.url");
+        mode = readPropertiesFile.Property().getProperty("driver.mode");
         switch (browser) {
             case "chrome":
                 browserDriver = readPropertiesFile.Property().getProperty("driver.chrome");
@@ -19,6 +21,7 @@ public class ReadConfig {
                 headlessArgs = readPropertiesFile.Property().getProperty("chrome.options.headless");
                 disableGpuArgs = readPropertiesFile.Property().getProperty("chrome.options.gpu");
                 maxWindowsArgs = readPropertiesFile.Property().getProperty("chrome.options.windows");
+
                 break;
 
             case "firefox":
@@ -36,6 +39,8 @@ public class ReadConfig {
                 break;
         }
     }
+
+    public String getGridurl() { return gridurl; }
 
     public String getMaxWindowsArgs(){
         return this.maxWindowsArgs;
@@ -60,4 +65,6 @@ public class ReadConfig {
     public String getUrl(){
         return this.url;
     }
+
+    public String getMode(){return this.mode;}
 }

@@ -2,6 +2,7 @@ package pageObjectRepo;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import static com.google.common.truth.Truth.assert_;
 
 public class CartPage extends PageObject {
 
-    public CartPage(WebDriver driver){
+    public CartPage(RemoteWebDriver driver){
         super(driver);
     }
 

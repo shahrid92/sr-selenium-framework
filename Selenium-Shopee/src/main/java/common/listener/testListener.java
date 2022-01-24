@@ -1,9 +1,5 @@
 package common.listener;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import common.driver.RemoteWebDriver;
-import common.reports.ExtentReportClass;
 import org.testng.ITestContext ;
 import org.testng.ITestListener ;
 import org.testng.ITestResult ;
@@ -12,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public class testListener implements ITestListener {
 
-    private static final Logger LOG = LogManager.getLogger(testListener.class);
+   private static final Logger LOG = LogManager.getLogger(testListener.class);
   //  private ExtentTest test;
    // private ExtentReports extent;
     //private ExtentReportClass erc ;//= new ExtentReportClass();
@@ -21,7 +17,7 @@ public class testListener implements ITestListener {
     public void onFinish(ITestContext arg0) {
         // TODO Auto-generated method stub
 
-        LOG.info(arg0.getName() + "Test Completed");
+     //   LOG.info(arg0.getName() + "Test Completed");
     }
 
     @Override
@@ -41,7 +37,7 @@ public class testListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult arg0) {
         // TODO Auto-generated method stub
-        LOG.info("FAILED!");
+     //   LOG.info("FAILED!");
 //        test.fail("failed!!");
 //        extent.flush();
     }
@@ -55,7 +51,7 @@ public class testListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult arg0) {
         // TODO Auto-generated method stub
-        LOG.info("Start Test : "+ arg0.getName());
+       // LOG.info("Start Test : "+ arg0.getName());
 
 //        test = extent.createTest(arg0.getName());
 //        test.info("start test!");

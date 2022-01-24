@@ -1,6 +1,13 @@
 # Target Web Url
 targetUrl=https://www.shopee.com.my
 
+# Selenium Grid Properties
+# Hub config
+grid.hub.url=http://192.168.0.106:4444/wd/hub
+
+# mode local or grid
+driver.mode=grid
+
 # Chrome Properties
 driver.chrome=webdriver.chrome.driver
 driver.chrome.path=src/main/resources/chrome/chromedriver.exe
@@ -16,3 +23,4 @@ firefox.options.headless=true
 # Edge Properties
 driver.edge=webdriver.edge.driver
 driver.firefox.path=src/main/resources/edge/msedgedriver.exe
+

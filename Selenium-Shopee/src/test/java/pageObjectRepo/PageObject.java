@@ -1,31 +1,34 @@
 package pageObjectRepo;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import common.driver.RemoteWebDriver;
 import common.helper.JsExecuteHelper;
-import common.reports.ExtentReportClass;
+import common.listener.testListener;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.rmi.Remote;
 import java.util.List;
 
-public class PageObject extends RemoteWebDriver {
+public class PageObject {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected JsExecuteHelper js;
+    protected static JsExecuteHelper js;
+    private static final Logger LOG = LogManager.getLogger(PageObject.class);
 
     public PageObject(WebDriver driver){
+        LOG.info("Initiate POM...");
         this.driver = driver;
         js = new JsExecuteHelper( this.driver);
-        wait = new WebDriverWait( this.driver,10);
+        wait = new WebDriverWait( this.driver,60);
         PageFactory.initElements( this.driver, this);
-
     }
 
     //Search Results Page
@@ -66,9 +69,9 @@ public class PageObject extends RemoteWebDriver {
     protected WebElement LanguageBox;
 
     @FindBy(css = ".language-selection__list-item")
-    protected List<WebElement> languageSelection;
+    protected static List<WebElement> languageSelection;
 
-    @FindBy(css = ".shopee-popup__container")
+    @FindBy(css = "shopee-banner-popup-stateful")
     protected WebElement adsModal;
 
     @FindBy(css = ".header-with-search__logo-section")
@@ -142,6 +145,9 @@ public class PageObject extends RemoteWebDriver {
 
     @FindBy(css =".shopee-sort-by-options > div")
     protected List<WebElement> sortByElements;
+
+    @FindBy(css ="shopee-banner-popup-stateful")
+    protected static List<WebElement> shadowElements;
 
 
 

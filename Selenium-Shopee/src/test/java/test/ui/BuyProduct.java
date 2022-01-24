@@ -1,6 +1,6 @@
 package test.ui;
 
-import driverLifeCycle.TestBase;
+import BaseClass.TestBase;
 
 import org.testng.annotations.Test;
 import pageObjectRepo.*;
