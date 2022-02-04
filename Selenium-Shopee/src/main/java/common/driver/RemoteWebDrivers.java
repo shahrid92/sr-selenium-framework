@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class RemoteWebDrivers {
 
-    //public RemoteWebDriver driver;
     protected EventFiringWebDriver eventHandler;
     protected ExtentReportClass erc = new ExtentReportClass();
     protected ExtentTest test;

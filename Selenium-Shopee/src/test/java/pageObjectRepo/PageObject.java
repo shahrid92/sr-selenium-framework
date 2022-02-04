@@ -21,10 +21,9 @@ public class PageObject {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected static JsExecuteHelper js;
-    private static final Logger LOG = LogManager.getLogger(PageObject.class);
+    protected static final Logger LOG = LogManager.getLogger(PageObject.class);
 
     public PageObject(WebDriver driver){
-        LOG.info("Initiate POM...");
         this.driver = driver;
         js = new JsExecuteHelper( this.driver);
         wait = new WebDriverWait( this.driver,60);

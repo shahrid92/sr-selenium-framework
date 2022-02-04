@@ -22,7 +22,6 @@ public class TestBase extends RemoteWebDrivers {
     @Parameters({"browser"})
     public void mainDriver(String browser,final ITestContext testContext) {
         readConfig = new ReadConfig(browser);
-        System.out.println("--------------------"+readConfig.getMode());
         switch(browser){
             case "chrome" :
                 if(readConfig.getMode().contains("grid")){

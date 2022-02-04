@@ -6,7 +6,7 @@ targetUrl=https://www.shopee.com.my
 grid.hub.url=http://192.168.0.106:4444/wd/hub
 
 # mode local or grid
-driver.mode=grid
+driver.mode=local
 
 # Chrome Properties
 driver.chrome=webdriver.chrome.driver

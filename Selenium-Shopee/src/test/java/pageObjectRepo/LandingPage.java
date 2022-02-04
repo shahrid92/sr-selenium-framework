@@ -23,11 +23,11 @@ public class LandingPage extends PageObject {
 
     public LandingPage languageHomeSelection(String lang){
 
-       // LOG.info("Seleting language..");
         Reporter.log("Select Language : "+ lang + "<br>");
         for(int i=0;i<languageSelection.size();i++) {
             if (languageSelection.get(i).getText().equals(lang)) {
                 languageSelection.get(i).click();
+                LOG.info("Seleting language..");
             }
         }
      //   LOG.info("Clossing modal banner...");
