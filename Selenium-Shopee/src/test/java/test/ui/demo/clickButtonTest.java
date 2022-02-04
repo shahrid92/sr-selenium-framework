@@ -15,5 +15,10 @@ public class clickButtonTest extends TestBase {
 
     }
 
+    @Test(enabled = true)
+    public void clickButtonByIndex(){
+
+    }
+
 
 }
