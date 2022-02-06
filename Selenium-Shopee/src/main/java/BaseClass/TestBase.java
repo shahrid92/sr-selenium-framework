@@ -2,6 +2,7 @@ package BaseClass;
 
 import common.driver.RemoteWebDrivers;
 import common.helper.ReadConfig;
+import common.properties.readPropertiesFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
@@ -13,14 +14,16 @@ public class TestBase extends RemoteWebDrivers {
 
     private static final Logger LOG = LogManager.getLogger(TestBase.class);
     private ReadConfig readConfig;
+    private readPropertiesFile  readPropertiesFile;
     @BeforeClass
     public void createReport(){
 
     }
 
     @BeforeMethod
-    @Parameters({"browser"})
-    public void mainDriver(String browser,final ITestContext testContext) {
+    @Parameters({"browser","properties"})
+    public void mainDriver(String browser,final ITestContext testContext,String properties) {
+        readPropertiesFile = new readPropertiesFile(properties);
         readConfig = new ReadConfig(browser);
         switch(browser){
             case "chrome" :

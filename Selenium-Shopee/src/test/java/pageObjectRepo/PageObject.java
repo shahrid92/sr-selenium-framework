@@ -5,6 +5,7 @@ import common.listener.testListener;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -22,12 +23,14 @@ public class PageObject {
     protected WebDriverWait wait;
     protected static JsExecuteHelper js;
     protected static final Logger LOG = LogManager.getLogger(PageObject.class);
+    protected Actions actions;
 
     public PageObject(WebDriver driver){
         this.driver = driver;
         js = new JsExecuteHelper( this.driver);
         wait = new WebDriverWait( this.driver,60);
         PageFactory.initElements( this.driver, this);
+        this.actions = new Actions(driver);
     }
 
     //Search Results Page
@@ -148,6 +151,11 @@ public class PageObject {
     @FindBy(css ="shopee-banner-popup-stateful")
     protected static List<WebElement> shadowElements;
 
+    // demosqa
 
+    @FindBy(css = "#doubleClickBtn")
+    protected WebElement doubleClickButton;
 
+    @FindBy(css = "#doubleClickMessage")
+    protected WebElement doubleClickButtonMessage;
 }

@@ -12,7 +12,7 @@ import static com.google.common.truth.Truth.assert_;
 
 public class CartPage extends PageObject {
 
-    public CartPage(RemoteWebDriver driver){
+    public CartPage(WebDriver driver){
         super(driver);
     }
 

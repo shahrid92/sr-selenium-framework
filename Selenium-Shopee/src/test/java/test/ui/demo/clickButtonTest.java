@@ -3,10 +3,11 @@ package test.ui.demo;
 import BaseClass.TestBase;
 import org.testng.annotations.Test;
 import pageObjectRepo.LandingPage;
+import pageObjectRepo.demosqa.buttonPage;
 
 public class clickButtonTest extends TestBase {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void clickButton(){
 
         new LandingPage(driver)
@@ -15,14 +16,21 @@ public class clickButtonTest extends TestBase {
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void clickButtonByIndex(){
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void clickButtonByCSS(){
 
+    }
+
+    @Test(enabled = true)
+    public void doubleClickTestAction(){
+        new buttonPage(driver)
+                .doubleClickButtonAction()
+                .verifyDoubleClickMsg("You have done a double click!");
     }
 
 

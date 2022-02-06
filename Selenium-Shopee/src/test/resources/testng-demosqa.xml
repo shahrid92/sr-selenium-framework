@@ -2,12 +2,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite Test" parallel="classes" thread-count="2">
     <parameter name="browser" value="chrome"/>
-    <parameter name="properties" value="shopee.properties"/>
-    <test name="To test shopee search product and filters">
+    <parameter name="properties" value="demosqa.properties"/>
+    <test name="Demosqa test automation practice">
         <classes>
-<!--            <class name="test.ui.SearchProduct" />-->
-<!--            <class name="test.ui.SearchFilter" />-->
-<!--            <class name="test.ui.BuyProduct" />-->
             <class name="test.ui.demo.clickButtonTest" />
         </classes>
     </test>
