@@ -26,11 +26,17 @@ public class clickButtonTest extends TestBase {
 
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void doubleClickTestAction(){
         new buttonPage(driver)
                 .doubleClickButtonAction()
                 .verifyDoubleClickMsg("You have done a double click!");
+    }
+
+    @Test(enabled = true)
+    public void rightClickTestAction(){
+        new buttonPage(driver)
+                .clickButtonAction("You have done a dynamic click");
     }
 
 

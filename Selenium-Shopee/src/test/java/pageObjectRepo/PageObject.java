@@ -158,4 +158,12 @@ public class PageObject {
 
     @FindBy(css = "#doubleClickMessage")
     protected WebElement doubleClickButtonMessage;
+
+    @FindBy(css = "#button")
+    protected List<WebElement> clickButton;
+
+    @FindBy(css = "#dynamicClickMessage")
+    protected WebElement ClickButtonMessage;
+
+
 }

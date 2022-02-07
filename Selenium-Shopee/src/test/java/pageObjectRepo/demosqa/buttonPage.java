@@ -1,8 +1,11 @@
 package pageObjectRepo.demosqa;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import pageObjectRepo.PageObject;
+
+import java.util.List;
 
 import static com.google.common.truth.Truth.assert_;
 
@@ -23,6 +26,13 @@ public class buttonPage extends PageObject {
         assert_().withMessage("Double click message should be same").that(doubleClickButtonMessage.getText()).contains(msg);
         return this;
     }
+
+    public buttonPage clickButtonAction(String msg){
+
+        assert_().withMessage("click message should be same").that(doubleClickButtonMessage.getText()).contains(msg);
+        return this;
+    }
+
 
 
 }
