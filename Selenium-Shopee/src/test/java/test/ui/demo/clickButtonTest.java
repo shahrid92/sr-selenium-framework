@@ -7,26 +7,14 @@ import pageObjectRepo.demosqa.buttonPage;
 
 public class clickButtonTest extends TestBase {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void clickButton(){
-
         new LandingPage(driver)
                 .languageHomeSelection("English")
                 .searchProducts("Samsung Galaxy");
-
     }
 
-    @Test(enabled = false)
-    public void clickButtonByIndex(){
-
-    }
-
-    @Test(enabled = false)
-    public void clickButtonByCSS(){
-
-    }
-
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void doubleClickTestAction(){
         new buttonPage(driver)
                 .doubleClickButtonAction()
@@ -36,7 +24,14 @@ public class clickButtonTest extends TestBase {
     @Test(enabled = true)
     public void rightClickTestAction(){
         new buttonPage(driver)
-                .clickButtonAction("You have done a dynamic click");
+                .rightClickButtonAction()
+                .verifyrightClickMsg("You have done a right click");
+    }
+
+    @Test(enabled = true)
+    public void dynamicClickTestAction(){
+        new buttonPage(driver)
+                .dynamicClickButtonAction("You have done a dynamic click");
     }
 
 

@@ -16,8 +16,6 @@ public class buttonPage extends PageObject {
     }
 
     public buttonPage doubleClickButtonAction(){
-
-        doubleClickButton.click();
         actions.doubleClick(doubleClickButton).perform();
         return this;
     }
@@ -27,9 +25,19 @@ public class buttonPage extends PageObject {
         return this;
     }
 
-    public buttonPage clickButtonAction(String msg){
+    public buttonPage rightClickButtonAction(){
+        actions.contextClick(rightClickButton).perform();
+        return this;
+    }
 
-        assert_().withMessage("click message should be same").that(doubleClickButtonMessage.getText()).contains(msg);
+    public buttonPage verifyrightClickMsg(String msg){
+        assert_().withMessage("right click message should be same").that(rightClickButtonMessage.getText()).contains(msg);
+        return this;
+    }
+
+    public buttonPage dynamicClickButtonAction(String msg){
+        dynamicClickButton.get(3).click();
+        assert_().withMessage("dynamic click message should be same").that(dynamicClickButtonMessage.getText()).contains(msg);
         return this;
     }
 
