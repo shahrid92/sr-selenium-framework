@@ -152,7 +152,7 @@ public class PageObject {
     protected static List<WebElement> shadowElements;
 
     // demosqa
-
+    // Button
     @FindBy(css = "#doubleClickBtn")
     protected WebElement doubleClickButton;
 
@@ -171,5 +171,17 @@ public class PageObject {
     @FindBy(css = "#dynamicClickMessage")
     protected WebElement dynamicClickButtonMessage;
 
+    // TextBox
 
+    @FindBy(css = "#userName")
+    protected WebElement textBoxFullname;
+
+    @FindBy(css = "#userEmail")
+    protected WebElement textBoxEmail;
+
+    @FindBy(css = "#currentAddress")
+    protected WebElement textBoxCurrentAdd;
+
+    @FindBy(css = "#permanentAddress")
+    protected WebElement textBoxPermaAdd;
 }

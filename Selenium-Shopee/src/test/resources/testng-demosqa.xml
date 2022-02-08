@@ -5,7 +5,8 @@
     <parameter name="properties" value="demosqa.properties"/>
     <test name="Demosqa test automation practice">
         <classes>
-            <class name="test.ui.demo.clickButtonTest" />
+<!--            <class name="test.ui.demo.clickButtonTest" />-->
+            <class name="test.ui.demo.inputTextFieldTest" />
         </classes>
     </test>
 </suite>
