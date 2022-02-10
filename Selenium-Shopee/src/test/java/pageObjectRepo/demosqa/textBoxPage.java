@@ -19,6 +19,15 @@ public class textBoxPage extends PageObject {
         return this;
     }
 
+    public textBoxPage enterTextFieldEmail(String str){
+
+        textBoxEmail.sendKeys(str);
+        String value = textBoxEmail.getAttribute("value");
+        assert_().withMessage("Email text field should have value").that(value).contains(str);
+        LOG.info("Enter text field Email Passed!");
+     return this;
+    }
+
 
 
 }
