@@ -18,4 +18,11 @@ public class inputTextFieldTest extends TestBase {
                 .enterTextFieldEmail("shah@test.com");
     }
 
+    @Test(enabled = true)
+    public void inputTextCurrAddressFieldAction(){
+       new textBoxPage(driver)
+            .enterTextFieldCurAddress("Kuala Selangor,Selangor");
+
+    }
+
 }
