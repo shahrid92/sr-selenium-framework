@@ -37,6 +37,15 @@ public class textBoxPage extends PageObject {
         return this;
     }
 
+    public textBoxPage enterTextFieldPermaAddress(String str){
+
+        textBoxPermaAdd.sendKeys(str);
+        String value = textBoxPermaAdd.getAttribute("value");
+        assert_().withMessage("Current Address text field should have value").that(value).contains(str);
+        LOG.info("Enter text field Current Address Passed!");
+        return this;
+    }
+
 
 
 }

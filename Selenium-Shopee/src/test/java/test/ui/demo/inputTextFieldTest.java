@@ -12,16 +12,23 @@ public class inputTextFieldTest extends TestBase {
                 .enterTextFieldFullName("Shah Ridzuan Bin Abdul");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void inputTextEmailFieldAction(){
         new textBoxPage(driver)
                 .enterTextFieldEmail("shah@test.com");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void inputTextCurrAddressFieldAction(){
        new textBoxPage(driver)
             .enterTextFieldCurAddress("Kuala Selangor,Selangor");
+
+    }
+
+    @Test(enabled = true)
+    public void inputTextPermaAddressFieldAction(){
+        new textBoxPage(driver)
+                .enterTextFieldPermaAddress("Jeram,Selangor");
 
     }
 
