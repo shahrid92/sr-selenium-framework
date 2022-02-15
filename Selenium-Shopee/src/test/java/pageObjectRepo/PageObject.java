@@ -184,4 +184,15 @@ public class PageObject {
 
     @FindBy(css = "#permanentAddress")
     protected WebElement textBoxPermaAdd;
+
+    // Checkbox
+
+    @FindBy(css = ".rct-title")
+    protected List<WebElement> checkBoxTreeElements;
+
+    @FindBy(css = " .rct-options > button")
+    protected List<WebElement> optionsElements;
+
+
+
 }

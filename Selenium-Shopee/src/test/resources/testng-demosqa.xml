@@ -6,7 +6,8 @@
     <test name="Demosqa test automation practice">
         <classes>
 <!--            <class name="test.ui.demo.clickButtonTest" />-->
-            <class name="test.ui.demo.inputTextFieldTest" />
+<!--            <class name="test.ui.demo.inputTextFieldTest" />-->
+            <class name="test.ui.demo.checkBoxTreeTest" />
         </classes>
     </test>
 </suite>
