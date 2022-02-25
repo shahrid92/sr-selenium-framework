@@ -1,8 +1,8 @@
 
   # Practice Test Demosqa.com
-    @SmokeScenario
+
     Feature: New student form feature
-      @SmokeTest
+
      Scenario Outline: User complete registration form
 
        Given user at student registration form page
