@@ -29,13 +29,13 @@ public class demo_StudentRegisterForm {
         System.out.println("Test");
 
     }
-    @And("enter {int}")
-    public void enter(Integer int1) {
+    @And("enter (01692819281)")
+    public void enter() {
         System.out.println("Test");
 
     }
-    @And("enter {int} Feb {int}")
-    public void enter_feb(Integer int1, Integer int2) {
+    @And("enter (24 Feb 1992)")
+    public void enter_feb() {
         System.out.println("Test");
 
     }
@@ -44,7 +44,7 @@ public class demo_StudentRegisterForm {
         System.out.println("Test");
 
     }
-    @And("select <hobbies>")
+    @And("select test")
     public void select_hobbies() {
         System.out.println("Test");
 

@@ -17,9 +17,18 @@ public class demo_test extends TestBase {
     public void this_is_and_step() {
         System.out.println("Test3");
     }
+    @And("^this is (test step)$")
+    public void this_is_test_step(String step) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+       System.out.println(step);
+    }
     @Then("this is then step")
     public void this_is_then_step() {
+
         System.out.println("Test4");
+
+        driver.close();
+        driver.quit();
     }
 
 }

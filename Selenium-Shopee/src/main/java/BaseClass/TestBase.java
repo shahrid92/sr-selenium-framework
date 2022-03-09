@@ -48,7 +48,7 @@ public class TestBase extends RemoteWebDrivers {
 
         LOG.info("Starting Webdriver " + browser);
         maxBrowserWindows();
-        System.out.println(testContext.getName());
+        //System.out.println(testContext.getName());
         test = extent.createTest("test1");
 
         test.info("start test!");

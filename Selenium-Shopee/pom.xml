@@ -176,9 +176,17 @@
                                 <artifactId>maven-surefire-plugin</artifactId>
                                 <version>3.0.0-M5</version>
                                 <configuration>
+                                    <parallel>classes</parallel>
+                                    <threadCount>4</threadCount>
                                     <includes>
                                         <include>**/*/TestRunner.java</include>
                                     </includes>
+                                        <properties>
+                                            <property>
+                                                <name>dataproviderthreadcount</name>
+                                                <value>20</value>
+                                            </property>
+                                        </properties>
                                 </configuration>
                             </plugin>
                         </plugins>

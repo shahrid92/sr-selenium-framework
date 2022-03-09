@@ -20,6 +20,6 @@
        Then user click submit button
 
        Examples:
-       |firstname|lastname|email|gender|mobileNumber|dateOfBirth|subject|currentAddress|state|city|
-       |John     |Toretto |jt@gmail.com|Male|01692819281|24 Feb 1992|Cloud Testing|Kuala Lumpur|Selangor|Gombak|
+       |firstname|lastname|email|gender|mobileNumber|dateOfBirth|subject|hobbies|currentAddress|state|city|
+       |John     |Toretto |jt@gmail.com|Male|01692819281|24 Feb 1992|Cloud Testing|test|Kuala Lumpur|Selangor|Gombak|
 
