@@ -146,7 +146,7 @@
     -->
     <profiles>
         <profile>
-            <id>test1</id>
+            <id>testng-test</id>
                 <build>
                     <pluginManagement>
                         <plugins>
@@ -167,7 +167,7 @@
         </profile>
 <!--        -->
         <profile>
-            <id>test2</id>
+            <id>cucumber-test</id>
                 <build>
                     <pluginManagement>
                         <plugins>
