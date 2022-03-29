@@ -193,6 +193,62 @@ public class PageObject {
     @FindBy(css = " .rct-options > button")
     protected List<WebElement> optionsElements;
 
+    // Practice
+    // Student Register Form
+
+    @FindBy(css = "#firstName")
+    protected WebElement studentFirstName;
+
+    @FindBy(css = "#lastName")
+    protected WebElement studentLastName;
+
+    @FindBy(css = "#userEmail")
+    protected WebElement userEmail;
+
+    @FindBy(css = "#gender-radio-1")
+    protected WebElement genderRadioButtonMale;
+
+    @FindBy(css = "#gender-radio-2")
+    protected WebElement genderRadioButtonFemale;
+
+    @FindBy(css = "#gender-radio-3")
+    protected WebElement genderRadioButtonOther;
+
+    @FindBy(css = "#userNumber")
+    protected WebElement studentNumber;
+
+    @FindBy(css = "#dateOfBirthInput")
+    protected WebElement inputDOB;
+
+    @FindBy(css = "#subjectsContainer")
+    protected WebElement inputSubject;
+
+    @FindBy(css = "#hobbies-checkbox-1")
+    protected WebElement cbHobbiesSports;
+
+    @FindBy(css = "#hobbies-checkbox-2")
+    protected WebElement cbHobbiesReading;
+
+    @FindBy(css = "#hobbies-checkbox-3")
+    protected WebElement cbHobbiesMusic;
+
+    @FindBy(css = "#currentAddress")
+    protected WebElement areaAddress;
+
+    @FindBy(css = "#state")
+    protected WebElement selectState;
+
+    @FindBy(css = "#city")
+    protected WebElement selectCity;
+
+
+
+
+
+
+
+
+
 
 
 }
