@@ -1,17 +1,18 @@
 package cucumber.stepdefinition;
 
+import BaseClass.TestBase;
 import io.cucumber.java.en.*;
 
-public class demo_StudentRegisterForm {
+public class demo_StudentRegisterForm extends TestBase {
 
     @Given("user at student registration form page")
     public void user_at_student_registration_form_page() {
         System.out.println("Test");
-
     }
     @When("user enter John")
     public void user_enter_john() {
-        System.out.println("Test");
+
+
 
     }
     @And("user enter Toretto")
