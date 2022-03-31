@@ -6,17 +6,17 @@
      Scenario Outline: User complete registration form
 
        Given user at student registration form page
-       When user enter <firstname>
-       And user enter <lastname>
-       And user enter <email>
-       Then user select <gender>
-       And enter <mobileNumber>
-       And enter <dateOfBirth>
-       And enter <subject>
-       And select <hobbies>
-       And enter <currentAddress>
-       And select <state>
-       And select <city>
+       When user enter "<firstname>" in firstname field
+       And user enter "<lastname>" in last name field
+       And user enter "<email>" in email field
+       Then user select "<gender>" in gender radio button
+       And enter "<mobileNumber>" in mobile number field
+       And enter "<dateOfBirth>" in date of birth field
+       And enter "<subject>" in subject field
+       Then select "<hobbies>" in hobbies radio button
+       And enter "<currentAddress>" in address field
+       And select "<state>" in state field
+       And select "<city>" in city field
        Then user click submit button
 
        Examples:

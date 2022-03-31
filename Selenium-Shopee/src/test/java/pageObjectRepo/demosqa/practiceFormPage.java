@@ -70,4 +70,19 @@ public class practiceFormPage extends PageObject {
         return this;
     }
 
+    public practiceFormPage enterState(String state){
+        selectState.sendKeys(state);
+        return this;
+    }
+
+    public practiceFormPage enterCity(String city){
+        selectCity.sendKeys(city);
+        return this;
+    }
+
+    public practiceFormPage clickSubmit(){
+
+        return this;
+    }
+
 }

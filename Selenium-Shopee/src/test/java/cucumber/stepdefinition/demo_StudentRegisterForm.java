@@ -2,72 +2,83 @@ package cucumber.stepdefinition;
 
 import BaseClass.TestBase;
 import io.cucumber.java.en.*;
+import pageObjectRepo.demosqa.practiceFormPage;
 
 public class demo_StudentRegisterForm extends TestBase {
 
-    @Given("user at student registration form page")
+
+    @Given("^user at student registration form page$")
     public void user_at_student_registration_form_page() {
-        System.out.println("Test");
+        this.mainDriver("chrome",null,"demosqa.properties");
     }
-    @When("user enter John")
-    public void user_enter_john() {
+    @When("^user enter \"(.*?)\" in firstname field$")
+    public void user_firstname(String firstname) {
 
-
-
-    }
-    @And("user enter Toretto")
-    public void user_enter_toretto() {
-        System.out.println("Test");
+        new practiceFormPage(driver)
+                .enterFirstName(firstname);
 
     }
-    @And("user enter jt@gmail.com")
-    public void user_enter_jt_gmail_com() {
-        System.out.println("Test");
+    @And("^user enter \"(.*?)\" in last name field$")
+    public void user_lastname(String lastname) {
+        new practiceFormPage(driver)
+                .enterLastName(lastname);
 
     }
-    @Then("user select Male")
-    public void user_select_male() {
-        System.out.println("Test");
+    @And("^user enter \"(.*?)\" in email field$")
+    public void user_email(String email) {
+        new practiceFormPage(driver)
+                .enterEmail(email);
 
     }
-    @And("enter (01692819281)")
-    public void enter() {
-        System.out.println("Test");
+    @Then("^user select \"(.*?)\" in gender radio button$")
+    public void user_gender(String gender) {
+        new practiceFormPage(driver)
+                .enterGender(gender);
+    }
+    @And("enter \"(.*?)\" in mobile number field$")
+    public void user_mobilenumber(String mobilenumber) {
+        new practiceFormPage(driver)
+                .enterMobileNumber(mobilenumber);
 
     }
-    @And("enter (24 Feb 1992)")
-    public void enter_feb() {
-        System.out.println("Test");
+    @And("^enter \"(.*?)\" in date of birth field$")
+    public void user_dob(String dob) {
+        new practiceFormPage(driver)
+                .enterDateOfBirth(dob);
 
     }
-    @And("enter Cloud Testing")
-    public void enter_cloud_testing() {
-        System.out.println("Test");
+    @And("^enter \"(.*?)\" in subject field$")
+    public void user_subject(String subject) {
+        new practiceFormPage(driver)
+                .enterSubject(subject);
 
     }
-    @And("select test")
-    public void select_hobbies() {
-        System.out.println("Test");
+    @And("^select \"(.*?)\" in hobbies radio button$")
+    public void user_hobbies(String hobbies) {
+        new practiceFormPage(driver)
+                .enterHobbies(hobbies);
 
     }
-    @And("enter Kuala Lumpur")
-    public void enter_kuala_lumpur() {
-        System.out.println("Test");
+    @And("^enter \"(.*?)\" in address field$")
+    public void user_address(String address) {
+        new practiceFormPage(driver)
+                .enterAddress(address);
 
     }
-    @And("select Selangor")
-    public void select_selangor() {
-        System.out.println("Test");
+    @And("^select \"(.*?)\" in state field$")
+    public void user_state(String state) {
+        new practiceFormPage(driver)
+                .enterState(state);
 
     }
-    @And("select Gombak")
-    public void select_gombak() {
-        System.out.println("Test");
-
+    @And("^select \"(.*?)\" in city field$")
+    public void user_city(String city) {
+        new practiceFormPage(driver)
+                .enterCity(city);
     }
-    @Then("user click submit button")
+    @Then("^user click submit button$")
     public void user_click_submit_button() {
-        System.out.println("Test");
+        System.out.println("User click button");
 
     }
 
