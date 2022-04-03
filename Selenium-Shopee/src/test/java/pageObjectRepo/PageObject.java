@@ -28,7 +28,7 @@ public class PageObject {
     public PageObject(WebDriver driver){
         this.driver = driver;
         js = new JsExecuteHelper( this.driver);
-        wait = new WebDriverWait( this.driver,60);
+        wait = new WebDriverWait( this.driver,10);
         PageFactory.initElements( this.driver, this);
         this.actions = new Actions(driver);
     }
@@ -205,40 +205,40 @@ public class PageObject {
     @FindBy(css = "#userEmail")
     protected WebElement userEmail;
 
-    @FindBy(css = "#gender-radio-1")
-    protected WebElement genderRadioButtonMale;
+    @FindBy(css = "#gender-radio-1 + label")
+    protected List<WebElement> genderRadioButtonMale;
 
-    @FindBy(css = "#gender-radio-2")
-    protected WebElement genderRadioButtonFemale;
+    @FindBy(css = "#gender-radio-2 + label")
+    protected List<WebElement> genderRadioButtonFemale;
 
-    @FindBy(css = "#gender-radio-3")
-    protected WebElement genderRadioButtonOther;
+    @FindBy(css = "#gender-radio-3 + label")
+    protected List<WebElement> genderRadioButtonOther;
 
     @FindBy(css = "#userNumber")
     protected WebElement studentNumber;
 
     @FindBy(css = "#dateOfBirthInput")
-    protected WebElement inputDOB;
+    protected List<WebElement> inputDOB;
 
-    @FindBy(css = "#subjectsContainer")
+    @FindBy(css = "#subjectsInput")
     protected WebElement inputSubject;
 
     @FindBy(css = "#hobbies-checkbox-1")
-    protected WebElement cbHobbiesSports;
+    protected List<WebElement> cbHobbiesSports;
 
     @FindBy(css = "#hobbies-checkbox-2")
-    protected WebElement cbHobbiesReading;
+    protected List<WebElement> cbHobbiesReading;
 
     @FindBy(css = "#hobbies-checkbox-3")
-    protected WebElement cbHobbiesMusic;
+    protected List<WebElement> cbHobbiesMusic;
 
     @FindBy(css = "#currentAddress")
     protected WebElement areaAddress;
 
-    @FindBy(css = "#state")
+    @FindBy(css = "#react-select-3-input")
     protected WebElement selectState;
 
-    @FindBy(css = "#city")
+    @FindBy(css = "#react-select-4-input")
     protected WebElement selectCity;
 
 

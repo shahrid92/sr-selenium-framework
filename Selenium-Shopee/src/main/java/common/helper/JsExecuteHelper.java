@@ -25,5 +25,9 @@ public class JsExecuteHelper {
         js.executeScript(jss, shadowRootElement.get(0));
     }
 
+    public void setAttributeValueByID(String id,String attr, String value){
+        js.executeScript("document.getElementById('"+id+"').setAttribute('"+attr+"', '"+value+"')");
+    }
+
 
 }

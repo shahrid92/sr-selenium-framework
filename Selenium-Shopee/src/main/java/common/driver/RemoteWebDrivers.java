@@ -29,7 +29,6 @@ public class RemoteWebDrivers {
         eventHandler.register(remoteWebDriverListener);
         extent = erc.getExtent();
 
-
     }
 
     protected void chromeStart(){

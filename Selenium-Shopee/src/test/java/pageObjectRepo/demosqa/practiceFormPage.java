@@ -1,6 +1,8 @@
 package pageObjectRepo.demosqa;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pageObjectRepo.PageObject;
 
 public class practiceFormPage extends PageObject {
@@ -22,12 +24,13 @@ public class practiceFormPage extends PageObject {
     }
 
     public practiceFormPage enterGender(String gender){
+
         switch(gender){
-            case "Male" : genderRadioButtonMale.click();
+            case "Male" : genderRadioButtonMale.get(0).click();
                 break;
-            case "Female" : genderRadioButtonFemale.click();
+            case "Female" : genderRadioButtonFemale.get(0).click();
                 break;
-            case "Other" : genderRadioButtonOther.click();
+            case "Other" : genderRadioButtonOther.get(0).click();
                 break;
         }
         return this;
@@ -39,7 +42,7 @@ public class practiceFormPage extends PageObject {
     }
 
     public practiceFormPage enterDateOfBirth(String dob){
-        inputDOB.sendKeys(dob);
+        js.setAttributeValueByID("dateOfBirthInput","value",dob);
         return this;
     }
 
@@ -50,16 +53,17 @@ public class practiceFormPage extends PageObject {
 
     public practiceFormPage enterSubject(String subjects){
         inputSubject.sendKeys(subjects);
+        inputSubject.sendKeys(Keys.RETURN);
         return this;
     }
 
     public practiceFormPage enterHobbies(String hobbies){
         switch(hobbies){
-            case "Sports" : cbHobbiesSports.click();
+            case "Sports" : cbHobbiesSports.get(0).click();
                 break;
-            case "Music" : cbHobbiesMusic.click();
+            case "Music" : cbHobbiesMusic.get(0).click();
                 break;
-            case "Reading" : cbHobbiesReading.click();
+            case "Reading" : cbHobbiesReading.get(0).click();
                 break;
         }
         return this;
@@ -71,12 +75,18 @@ public class practiceFormPage extends PageObject {
     }
 
     public practiceFormPage enterState(String state){
+
+        wait.until(ExpectedConditions.elementToBeClickable(selectState));
+
         selectState.sendKeys(state);
+        selectState.sendKeys(Keys.RETURN);
         return this;
     }
 
     public practiceFormPage enterCity(String city){
+        wait.until(ExpectedConditions.elementToBeClickable(selectCity));
         selectCity.sendKeys(city);
+        selectCity.sendKeys(Keys.RETURN);
         return this;
     }
 

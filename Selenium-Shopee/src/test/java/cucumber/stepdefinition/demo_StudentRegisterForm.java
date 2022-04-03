@@ -79,7 +79,8 @@ public class demo_StudentRegisterForm extends TestBase {
     @Then("^user click submit button$")
     public void user_click_submit_button() {
         System.out.println("User click button");
-
+        driver.close();
+        driver.quit();
     }
 
 }
