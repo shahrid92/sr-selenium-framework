@@ -21,5 +21,5 @@
 
        Examples:
        |firstname|lastname|email|gender|mobileNumber|dateOfBirth|subject|hobbies|currentAddress|state|city|
-       |John     |Toretto |jt@gmail.com|Male|01692819281|24 Feb 1992|Maths|test|Kuala Lumpur|NCR|Delhi|
+       |John     |Toretto |jt@gmail.com|Male|01692819281|24 Feb 2021|Maths|test|Kuala Lumpur|NCR|Delhi|
 

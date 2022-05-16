@@ -42,7 +42,9 @@ public class practiceFormPage extends PageObject {
     }
 
     public practiceFormPage enterDateOfBirth(String dob){
-        js.setAttributeValueByID("dateOfBirthInput","value",dob);
+        
+        inputDOB.get(0).sendKeys(dob);
+        inputDOB.get(0).sendKeys(Keys.RETURN);
         return this;
     }
 
