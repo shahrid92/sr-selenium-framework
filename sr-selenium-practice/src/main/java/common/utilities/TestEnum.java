@@ -5,7 +5,9 @@ public enum TestEnum {
     APP_CONFIG("user.dir"),
     CHROME("chrome"),
     EDGE("edge"),
-    FIREFOX("firefox");
+    FIREFOX("firefox"),
+    BROWSER("browser"),
+    BASEURL("base_url");
 
     private final String text;
 

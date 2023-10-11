@@ -2,6 +2,8 @@ package common;
 
 import common.utilities.ReadConfigFile;
 import common.utilities.TestEnum;
+import static common.utilities.TestEnum.BASEURL;
+import static common.utilities.TestEnum.BROWSER;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,11 +12,11 @@ public class TestBase {
 
     protected WebDriver driver;
 
-
     public void setupBrowser() {
         ChromeOptions options;
         ReadConfigFile prop = new ReadConfigFile();
-        TestEnum browser = TestEnum.valueOf(prop.getProperties("browser"));
+        TestEnum browser = TestEnum.valueOf(prop.getProperties(BROWSER.toString()));
+        String baseUri = prop.getProperties(BASEURL.toString());
         switch (browser) {
             case CHROME:
                 options = new ChromeOptions();
@@ -27,7 +29,7 @@ public class TestBase {
                 break;
         }
 
-        driver.get("https://www.google.com");
+        driver.get(baseUri);
 
     }
 

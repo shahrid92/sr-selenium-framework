@@ -13,7 +13,6 @@ public class ReadConfigFile {
     static String configPath = System.getProperty(APP_CONFIG.toString());
     static Properties prop = new Properties();
     public String getProperties(String attr){
-        System.out.println(configPath);
         Path path = Paths.get(configPath + "/src/test/resources/app.properties");
         try(InputStream input = Files.newInputStream(path)){
             prop.load(input);
@@ -21,8 +20,9 @@ public class ReadConfigFile {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally {
-            System.out.println("test");
+            System.out.println("Get properties values executed.");
         }
+        System.out.println("something is not right...");
         return null;
     }
 
