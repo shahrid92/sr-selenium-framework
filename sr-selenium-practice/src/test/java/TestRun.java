@@ -5,6 +5,6 @@ public class TestRun extends TestInit {
 
     @Test
     public void testRun(){
-        System.out.println("testrun");
+        System.out.println(driver.getTitle());
     }
 }
