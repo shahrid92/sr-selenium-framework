@@ -8,7 +8,6 @@ public enum TestEnum {
     FIREFOX("firefox"),
     BROWSER("browser"),
     BASEURL("base_url");
-
     private final String text;
 
     TestEnum(final String text){
