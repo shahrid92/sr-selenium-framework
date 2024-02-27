@@ -1,2 +1,19 @@
 
-u	java:S131"YComplete cases by adding the missing enum constants or add a default case to this switch.(°«ò8ª”…Æ°1
+u
+java:S1104"SMake drivers a static final constant or non-public and provide accessors if needed.(óÌÖçşÿÿÿÿ8ĞèäÕÉ1
+t
+java:S1104"RMake driver a static final constant or non-public and provide accessors if needed.(ÔèË©úÿÿÿÿ8ĞèäÕÉ1
+}
+java:S1104"[Make globalTimestamp a static final constant or non-public and provide accessors if needed.(§÷Ğÿÿÿÿÿ8š”çÕÉ1
+W
+java:S1444"5Make this "public static globalTimestamp" field final(§÷Ğÿÿÿÿÿ8š”çÕÉ1
+u	java:S131 "YComplete cases by adding the missing enum constants or add a default case to this switch.(°«ò8‡‹ò‹Ê1
+X	java:S125#"<This block of commented-out lines of code should be removed.(Æ½ˆû8ïèäÕÉ1
+L	java:S106G"+Replace this use of System.out by a logger.(³Óş™ùÿÿÿÿ8õèäÕÉ1
+L	java:S106H"+Replace this use of System.out by a logger.(¨¶ÑÍşÿÿÿÿ8õèäÕÉ1
+O
+java:S1135R"2Complete the task associated to this TODO comment.(Ç…³¬8ş’ÎÚÉ1
+T
+java:S1135S"2Complete the task associated to this TODO comment.(Œ×÷ÿÿÿÿÿ8…Šö†Ê1
+O
+java:S1135T"2Complete the task associated to this TODO comment.(ÙÍ¨î8şßõÆÔ1
