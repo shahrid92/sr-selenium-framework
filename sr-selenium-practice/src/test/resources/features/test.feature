@@ -13,7 +13,10 @@ Feature: To test orange demo website
   Scenario Outline:  As Admin add new employees details
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to PIM and click add employee
-    # And Fill all mandatory fields and submit
+    And Fill all new employee names
+      |FirstName|MiddleName|LastName|
+      |John     |Wick      |Karlov  |
+
    Examples:
       | username   | password |
       | Admin      | admin123 |
