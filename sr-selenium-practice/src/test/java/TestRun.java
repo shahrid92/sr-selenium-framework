@@ -2,8 +2,10 @@ import common.utilities.StepsScreenShot;
 import common.utilities.annotation.CustomAnnotation;
 import common.utilities.testdata.CSVUtils;
 import initTestDriver.TestInit;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.testng.ITestResult;
@@ -14,6 +16,9 @@ import org.testng.annotations.Test;
 import page.AdminPage;
 import page.CommonSteps;
 import page.LoginPage;
+import page.PIMPage;
+
+import java.util.List;
 
 public class TestRun extends TestInit {
 
@@ -112,6 +117,23 @@ public class TestRun extends TestInit {
         new CommonSteps(this.driver)
                 .clickByText("PIM")
                 .clickByText("Add");
+    }
+
+    @And("Fill all new employee names")
+    public void EnterEmployeeNames(List<List<String>> employeeData){
+
+        List<String> firstRow = employeeData.get(1);
+
+        System.out.println(employeeData.get(0));
+
+        new PIMPage(this.driver)
+                .EnterFirstName(firstRow.get(0))
+                .EnterMiddleName(firstRow.get(1))
+                .EnterLastName(firstRow.get(2));
+
+        new CommonSteps(this.driver)
+                .clickByText("Save")
+                .verifyPageText("Personal Details");
     }
 
     //Cucumber

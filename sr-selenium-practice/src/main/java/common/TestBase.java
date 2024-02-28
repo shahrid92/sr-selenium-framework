@@ -64,8 +64,8 @@ public class TestBase {
         {
             try
             {
-                driver.close();
                 driver.quit();
+                //driver.close();
             }
             catch (WebDriverException e) {
                 System.out.println("***** CAUGHT WEBDRIVEREXCEPTION IN DRIVER TEARDOWN *****");
