@@ -52,3 +52,7 @@ V
 &src/test/java/StepDefinitionAdmin.java,9\c\9cea60a83e5fc36fc8118aed81d9163dfeb8f9f1
 O
 src/test/java/page/PIMPage.java,8\8\88013604e8e50af972865f837b069d332b84cb0e
+[
++src/main/java/common/utilities/Context.java,5\a\5a5fdb3c216d6b576472511bf89b4895630ddfb6
+c
+3src/main/java/common/utilities/ScenarioContext.java,5\d\5ddd6670dbff73559c5ec852d3a1b3719f9a5220

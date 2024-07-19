@@ -10,7 +10,6 @@ public class TestInit extends TestBase {
 
     @BeforeMethod
     public void setupDriver(){
-
         this.setupBrowser();
     }
 

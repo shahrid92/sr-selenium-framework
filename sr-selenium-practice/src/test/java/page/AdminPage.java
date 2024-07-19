@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+
 public class AdminPage extends PageObject {
 
     @FindBy(xpath = "(//*[@class=\"oxd-select-wrapper\"])[1]")
@@ -27,6 +29,15 @@ public class AdminPage extends PageObject {
     @FindBy(css = "[type=password]")
     private List<WebElement> passTextField;
 
+    @FindBy(css = "[role=listbox]")
+    private WebElement usernameListBox;
+
+    @FindBy(css = "input.oxd-input:nth-child(1)")
+    private WebElement usernameTextField;
+
+    @FindBy(css = ".oxd-table-card:nth-child(1) > .oxd-table-row > .oxd-table-cell:nth-child(2)")
+    private WebElement recordListUsername;
+
     public AdminPage(WebDriver driver){
         super(driver);
     }
@@ -43,11 +54,18 @@ public class AdminPage extends PageObject {
 
     public AdminPage EnterEmployeeName(String text){
         wait.until(ExpectedConditions.visibilityOf(employeeNameTxt)).sendKeys(text);
+        new CommonSteps(driver)
+                .verifyPageText(text);
+        return this;
+    }
+
+    public AdminPage SelectEmployeeName(){
+        System.out.println(wait.until(ExpectedConditions.visibilityOf(usernameListBox)).isDisplayed());
+        wait.until(ExpectedConditions.visibilityOf(usernameListBox)).click();
         return this;
     }
 
     public AdminPage EnterUserName(String text){
-        System.out.println(userNameTxt.size());
         wait.until(ExpectedConditions.visibilityOf(userNameTxt.get(0))).sendKeys(text);
         return this;
     }
@@ -56,5 +74,16 @@ public class AdminPage extends PageObject {
         wait.until(ExpectedConditions.visibilityOf(passTextField.get(0))).sendKeys(pass);
         wait.until(ExpectedConditions.visibilityOf(passTextField.get(1))).sendKeys(pass);
     }
+
+    public void EnterSearchUsername(String text){
+        wait.until(ExpectedConditions.visibilityOf(usernameTextField)).sendKeys(text);
+    }
+
+    public void validateRecordFoundUsername(String expectedText){
+        String username = wait.until(ExpectedConditions.visibilityOf(recordListUsername)).getText();
+        assertWithMessage("Username not found!").that(username).contains(expectedText);
+    }
+
+
 
 }

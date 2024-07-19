@@ -43,26 +43,36 @@ public class CommonSteps extends PageObject {
     }
 
     public CommonSteps verifyPageText(String text){
-        Integer maxLoop = 0;
+
+        long startTime = System.currentTimeMillis();
+
         Boolean found = false;
 
             do{
+                long elapsedTime = System.currentTimeMillis() - startTime;
+
                 try{
                     WebElement e = driver.findElement(By.xpath("//*[text()[contains(.,'"+text+"')]]"));
                     wait.until(ExpectedConditions.visibilityOf(e));
-                    assertWithMessage("Text "+text+"not found!").that(e.isDisplayed()).isTrue();
+                    assertWithMessage("Text "+text+" not found!").that(e.isDisplayed()).isTrue();
                     found = true;
-                    System.out.println(text+" Found!");
+                    System.out.println("Text "+text+" Found in "+elapsedTime+"ms!");
                 }catch (Exception ex){
-                    System.out.println("Elements not exists yet!");
+                    System.out.println("/rverifyPageText("+elapsedTime+"ms) : Text \""+text+"\" not exists yet!");
                 }
-                maxLoop++;
 
                 if(found){
                     break;
                 }
+                //TODO - elapsed time need to config file
+                if (elapsedTime >= 15000) {
+                    System.out.println("verifyPageText("+elapsedTime+"ms) : Searching Text \""+text+"\" reach timeout!");
+                    assertWithMessage("Text \""+text+"\" not found!").that(found).isTrue();
+                    break;
+                }
+
             }
-            while(maxLoop <= 100);
+            while(true);
 
             return this;
         }
