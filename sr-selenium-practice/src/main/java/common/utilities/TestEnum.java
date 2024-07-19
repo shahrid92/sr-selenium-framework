@@ -7,7 +7,8 @@ public enum TestEnum {
     EDGE("edge"),
     FIREFOX("firefox"),
     BROWSER("browser"),
-    BASEURL("base_url");
+    BASEURL("base_url"),
+    ADMIN_USERNAME_TEXTFIELD("employee_username");
     private final String text;
 
     TestEnum(final String text){

@@ -1,6 +1,7 @@
 package common;
 
 import common.utilities.ReadConfigFile;
+import common.utilities.ScenarioContext;
 import common.utilities.TestEnum;
 import static common.utilities.TestEnum.BASEURL;
 import static common.utilities.TestEnum.BROWSER;
@@ -14,21 +15,27 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.annotations.Listeners;
+import com.github.javafaker.Faker;
+
+
 
 
 @Listeners({ListenerTest.class,actionListener.class})
 
 public class TestBase {
 
+    protected Faker faker;
     public WebDriver drivers;
     public WebDriver driver;
-    public static long globalTimestamp;
+    public static long  globalTimestamp;
+
+    public ScenarioContext scenarioContext = new ScenarioContext();
     public void setupBrowser() {
         ChromeOptions options;
         ReadConfigFile prop = new ReadConfigFile();
         TestEnum browser = TestEnum.valueOf(prop.getProperties(BROWSER.toString()));
         String baseUri = prop.getProperties(BASEURL.toString());
-
+        this.faker = new Faker();
         switch (browser) {
             case CHROME:
                 options = new ChromeOptions();
@@ -82,4 +89,5 @@ public class TestBase {
     //TODO: js execute, cucumber, rest assured,, allure/extent report, sql, paramatization
     //TODO: https://www.youtube.com/watch?v=w9sfxQH62Yo&ab_channel=SaravananSeenivasan
     //TODO: add more test cases
+    //TODO: share context are not working when passing parameter to another scenario outline. new states are created.
 }

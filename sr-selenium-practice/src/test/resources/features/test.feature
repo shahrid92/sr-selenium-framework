@@ -9,35 +9,36 @@ Feature: To test orange demo website
       | username   | password |
       | Admin      | admin123 |
 
-  @Test
-  Scenario Outline:  As Admin add new employees details
+  Scenario Outline:  As Admin create new employees details and credentials
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to PIM and click add employee
     And Fill all new employee names
-      |FirstName|MiddleName|LastName|
-      |John     |Wick      |Karlov  |
+    And Navigate admin page and click Add User
+    Then Enter new user details and save
+    And Enter new created username search text-field
 
    Examples:
       | username   | password |
       | Admin      | admin123 |
 
-
-  Scenario Outline:  As Admin create one ESS role user
+  @Test
+  Scenario Outline: As Admin delete employees details and credentials
     Given Users launch browser and login as "<username>" and "<password>"
-    And Navigate admin page and click Add User
-    Then Enter new user details and save
+    Then Navigate to "Admin" page
+    And Search employee username and validate user exists
+          |employee_username|
+          |Admin        |
 
-    Examples:
-      | username   | password |
-      | Admin      | admin123 |
+  Examples:
+    | username   | password |
+    | Admin      | admin123 |
+
+  @Draft
+  Scenario: 
+
+  #TODO - create BDD first then scripting
 
 
-  Scenario Outline: As ESS role user
-    Given Users launch browser and login as "<username>" and "<password>"
-    Then Apply leave by navigate to dashboard
 
-    Examples:
-      | username   | password |
-      | Admin      | admin123 |
-# last actibity
-  # setup docker for oranghrm since the online already take down
+#TODO - setup docker for orangehrm
+#TODO - Add new test cases
