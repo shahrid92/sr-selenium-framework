@@ -35,8 +35,14 @@ public class AdminPage extends PageObject {
     @FindBy(css = "input.oxd-input:nth-child(1)")
     private WebElement usernameTextField;
 
+    @FindBy(css = ".oxd-select-text")
+    private List<WebElement>  adminPageSelectFields;
+
     @FindBy(css = ".oxd-table-card:nth-child(1) > .oxd-table-row > .oxd-table-cell:nth-child(2)")
     private WebElement recordListUsername;
+
+    @FindBy(css = " .oxd-table-card:nth-child(1) > .oxd-table-row > .oxd-table-cell:nth-child(6) .oxd-icon-button:nth-child(2)")
+    private WebElement editButton;
 
     public AdminPage(WebDriver driver){
         super(driver);
@@ -82,6 +88,14 @@ public class AdminPage extends PageObject {
     public void validateRecordFoundUsername(String expectedText){
         String username = wait.until(ExpectedConditions.visibilityOf(recordListUsername)).getText();
         assertWithMessage("Username not found!").that(username).contains(expectedText);
+    }
+
+    public void selectbyUserRole(String userRole){
+        wait.until(ExpectedConditions.visibilityOf(adminPageSelectFields.get(0))).click();
+    }
+
+    public void clickEdit(){
+        String username = wait.until(ExpectedConditions.visibilityOf(editButton)).getText();
     }
 
 

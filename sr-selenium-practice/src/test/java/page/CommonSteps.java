@@ -27,7 +27,7 @@ public class CommonSteps extends PageObject {
               wait.until(ExpectedConditions.visibilityOf(e)).click();
               break;
           }catch (Exception ex){
-              System.out.println("Elements not exists yet!");
+              System.out.println("Text "+text+" not exists yet!");
           }
 
           if (System.currentTimeMillis() - startTime >= interval) {
