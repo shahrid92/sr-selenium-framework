@@ -8,6 +8,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -18,6 +19,7 @@ import page.LoginPage;
 import page.PIMPage;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -188,8 +190,63 @@ public class TestRun extends TestInit {
 
     @Then("Navigate to {string} page")
     public void NavigatePage(String page){
+
         new CommonSteps(this.driver)
+                .clickByText(page)
                 .verifyPageText(page);
+    }
+
+    @And("Search this employee name")
+    public void PIMSearchEmployeeName(DataTable empName){
+
+        List<String> al = empName.asList();
+        PIMPage p = new PIMPage(this.driver);
+        for(String a : al){
+            p.searchEmpName(a);
+        }
+
+        new CommonSteps(this.driver)
+                .clickByText("Search");
+
+    }
+
+    @Then("Click user for edit")
+    public void PIMEditButton(){
+        new PIMPage(this.driver)
+                .clickEditButton();
+
+        new CommonSteps(this.driver)
+                .verifyPageText("Personal Details");
+    }
+
+
+
+    @And("Select user role {string}")
+    public void selectUserRole(String role){
+        AdminPage ap = new AdminPage(this.driver);
+        ap.selectbyUserRole(role);
+        new CommonSteps(this.driver).clickByText(role);
+    }
+
+    @And("Navigate subpage and verify page titles")
+    public void NavigateSubPage(DataTable path){
+
+        CommonSteps cs = new CommonSteps(this.driver);
+
+        List<Map<String, String>> p = path.asMaps(String.class, String.class);
+
+        for (Map<String, String> pp : p){
+            String[] result = pp.get("Path").split("/");
+            for (String a : result){
+                cs.clickByText(a);
+            }
+            cs.verifyPageText(pp.get("Title"));
+        }
+
+
+
+
+
     }
 
     @And("Search employee username and validate user exists")
@@ -208,6 +265,29 @@ public class TestRun extends TestInit {
 
         ap.validateRecordFoundUsername(username);
     }
+
+    @And("Click edit found users")
+    public void clickEdit(){
+        AdminPage ap = new AdminPage(this.driver);
+        ap.clickEdit();
+    }
+
+    @When("admin user at {string} page")
+    public void userNavigateTo(String page){
+        new CommonSteps(this.driver)
+                .clickByText("PIM")
+                .clickByText(page);
+    }
+
+    @Then("admin fill report name as {string}")
+    public void setReportName(String reportName){
+        new PIMPage(this.driver)
+                .setReportNameAs(reportName);
+    }
+
+
+
+
 
     //Cucumber
     @BeforeMethod
