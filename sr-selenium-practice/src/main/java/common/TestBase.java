@@ -50,6 +50,10 @@ public class TestBase {
                 break;
             case EDGE:
                 break;
+
+            default:
+                throw new IllegalArgumentException("No browser was selected.");
+
         }
 
         webDriverListener wdl = new webDriverListener(drivers);
@@ -72,7 +76,6 @@ public class TestBase {
             try
             {
                 driver.quit();
-                //driver.close();
             }
             catch (WebDriverException e) {
                 System.out.println("***** CAUGHT WEBDRIVEREXCEPTION IN DRIVER TEARDOWN *****");

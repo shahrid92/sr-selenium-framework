@@ -67,11 +67,11 @@ Feature: To test orange demo website
     Given Users launch browser and login as "<username>" and "<password>"
     When admin user at "Reports" page
     Then admin fill report name as "Test Report"
-#    And add selection criteria as below
-#      |Employee name  |
-#      |employee status|
-#      |Job Title      |
-#      |Pay Grade      |
+    And add selection criteria as below
+      |Select1            |Select2  |
+      |Employee Name      |James    |
+      |Employment Status  |Freelance|
+      |Pay Grade          |Grade 58 |
 #    And select the include values ""
 #    And select the displayed fields
 #      |Displayed Field Group|Displayed Field|

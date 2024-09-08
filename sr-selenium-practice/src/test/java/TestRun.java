@@ -54,7 +54,7 @@ public class TestRun extends TestInit {
 
     @Test(enabled = false)
     @Parameters({"userid", "password"})
-    public void CreateUsers(String userid, String password) throws Exception {
+    public void CreateUsers(String userid, String password) {
 
         new LoginPage(driver)
                 .LoginAction(userid, password);
@@ -285,8 +285,13 @@ public class TestRun extends TestInit {
                 .setReportNameAs(reportName);
     }
 
-
-
+    @And("add selection criteria as below")
+    public void selectCriterion(List<Map<String, String>> criteria){
+        for(Map<String,String> e:criteria){
+            new PIMPage(this.driver)
+                    .selectCriterion(e.get("Select1"),e.get("Select2"));
+        }
+    }
 
 
     //Cucumber
