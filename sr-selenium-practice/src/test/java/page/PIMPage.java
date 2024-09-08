@@ -3,15 +3,15 @@ package page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.Keys;
 
-
-import java.security.Key;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static common.utilities.TestEnum.*;
 
 public class PIMPage extends PageObject {
 
@@ -40,6 +40,16 @@ public class PIMPage extends PageObject {
 
     @FindBy(css = "button > i.bi-plus")
     private WebElement addReportsPIM;
+
+    @FindBy(xpath = "(//label[@class='oxd-label' and contains(.,'Selection Criteria')]//../following-sibling::div//div[contains(@class,'oxd-select-text')])[1]")
+    private WebElement selectButtonReport;
+
+    @FindBy(css = "button.orangehrm-report-icon")
+    private List<WebElement> plusButton;
+
+    @FindBy(css = ".oxd-autocomplete-text-input > input")
+    private WebElement criteriaEmployeenameInput;
+
 
     public PIMPage(WebDriver driver) {
         super(driver);
@@ -113,6 +123,29 @@ public class PIMPage extends PageObject {
 
         return this;
     }
+
+    public PIMPage selectCriterion(String value1,String value2){
+
+        Map<String,WebElement> criteriaMap = InitiateSelectCriteriaElements();
+
+        wait.until(ExpectedConditions.visibilityOf(selectButtonReport)).click();
+        new CommonSteps(this.driver)
+                .clickByText(value1);
+        wait.until(ExpectedConditions.visibilityOf(plusButton.get(0))).click();
+        wait.until(ExpectedConditions.visibilityOf(criteriaMap.get(value1))).sendKeys(value2);
+        return this;
+    }
+
+    private Map<String,WebElement> InitiateSelectCriteriaElements(){
+
+        Map<String,WebElement> selectCriteria = new HashMap<>();
+
+        for(String e:REPORT.reportCriteria()){
+            selectCriteria.put(e,criteriaEmployeenameInput);
+        }
+        return selectCriteria;
+    }
+
 
 
 }

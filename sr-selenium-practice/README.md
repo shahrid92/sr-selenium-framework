@@ -6,7 +6,9 @@ Maven Profile 1 : cucumber-profile
 
 Mandatory argument ``-Dtags``
 
-``mvn test -Pcucumber-profile -Dtags="@SmokeTest"``
+``mvn test -Pcucumber-profile -Dtags=@SmokeTest``
+
+``mvn test -Pcucumber-profile -Dtags=@Test``
 
 to find test tags refer to the BDD feature files
 
