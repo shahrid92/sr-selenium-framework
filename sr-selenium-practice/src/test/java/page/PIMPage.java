@@ -1,5 +1,7 @@
 package page;
 
+import common.utilities.ElementsEnums;
+import common.utilities.TestEnum;
 import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static common.utilities.TestEnum.*;
 
 public class PIMPage extends PageObject {
@@ -50,6 +53,17 @@ public class PIMPage extends PageObject {
     @FindBy(css = ".oxd-autocomplete-text-input > input")
     private WebElement criteriaEmployeenameInput;
 
+    @FindBy(css = ".oxd-autocomplete-text-input > input")
+    private WebElement criteriaPayGradeSelection;
+
+    @FindBy(xpath = "//*[@class='oxd-label' and contains(.,'Select Display Field Group')]/../following-sibling::div/div/div/div[@class='oxd-select-text-input']")
+    private WebElement diplayFieldsGroupSelection;
+
+    @FindBy(xpath = "//*[./text()='Select Display Field']/../following-sibling::div/div/div/div[@tabindex]")
+    private WebElement diplayFieldsSelection;
+
+    @FindBy(xpath = "//*[@role='listbox']/div[@role='option']")
+    private List<WebElement> searchDropdown;
 
     public PIMPage(WebDriver driver) {
         super(driver);
@@ -126,24 +140,69 @@ public class PIMPage extends PageObject {
 
     public PIMPage selectCriterion(String value1,String value2){
 
-        Map<String,WebElement> criteriaMap = InitiateSelectCriteriaElements();
-
         wait.until(ExpectedConditions.visibilityOf(selectButtonReport)).click();
+
         new CommonSteps(this.driver)
                 .clickByText(value1);
+
         wait.until(ExpectedConditions.visibilityOf(plusButton.get(0))).click();
-        wait.until(ExpectedConditions.visibilityOf(criteriaMap.get(value1))).sendKeys(value2);
+
+         for(ElementsEnums e:ElementsEnums.values()){
+             if (e.toString().equals(value1)){
+                 if(e.getPath().isEmpty()){
+                     WebElement wb = driver.findElement(By.xpath("(//*[contains(@class,'orangehrm-report-criteria-name') and contains(.,'"+e.toString()+"')]/../following-sibling::div[position()=1]//*[contains(@class,'oxd-select-text')])[1]"));
+                     wait.until(ExpectedConditions.visibilityOf(wb)).click();
+                     new CommonSteps(this.driver)
+                             .clickByText(value2);
+                 }else{
+                     WebElement wb = driver.findElement(By.cssSelector(e.getPath()));
+                     wait.until(ExpectedConditions.visibilityOf(wb)).sendKeys(value2);
+
+                     long startTime = System.currentTimeMillis();
+
+                     do {
+
+                         long elapsedTime = System.currentTimeMillis() - startTime;
+
+                         try{
+                             System.out.println(searchDropdown.get(0).isDisplayed() + ","+ searchDropdown.get(0).getText());
+                             if(searchDropdown.get(0).isDisplayed() && searchDropdown.get(0).getText().contains(value2)){
+                                 searchDropdown.get(0).click();
+                                 break;
+                             }
+
+
+                         }catch(Exception ex){
+                             System.out.println(ex.getMessage());
+                         }
+
+                         if (elapsedTime >= 15000) {
+                             System.out.println("Still not found : " + elapsedTime );
+                             break;
+                         }
+
+                     }while(true);
+                 }
+
+             }
+         }
+
         return this;
     }
 
-    private Map<String,WebElement> InitiateSelectCriteriaElements(){
+    public void selectDisplayFieldGroup(String value1,String value2){
+        wait.until(ExpectedConditions.visibilityOf(diplayFieldsGroupSelection)).click();
 
-        Map<String,WebElement> selectCriteria = new HashMap<>();
+        new CommonSteps(this.driver)
+                .clickByText(value1);
 
-        for(String e:REPORT.reportCriteria()){
-            selectCriteria.put(e,criteriaEmployeenameInput);
-        }
-        return selectCriteria;
+        wait.until(ExpectedConditions.visibilityOf(diplayFieldsSelection)).click();
+
+        new CommonSteps(this.driver)
+                .clickByText(value2);
+
+        wait.until(ExpectedConditions.visibilityOf(plusButton.get(1))).click();
+
     }
 
 
