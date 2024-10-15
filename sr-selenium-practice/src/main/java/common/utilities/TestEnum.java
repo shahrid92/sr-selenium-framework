@@ -33,15 +33,24 @@ public enum TestEnum {
      * <b>test</b>
      * @return
      */
-    public List<String> reportCriteria(){
+    public List<TestEnum> reportCriteria(){
 
-        List<String> criteria = new ArrayList<>();
+        List<TestEnum> criteria = new ArrayList<>();
 
-        criteria.add(EMPLOYER_NAME.toString());
-        criteria.add(EMPLOYMENT_STATUS.toString());
-        criteria.add(PAYGRADE.toString());
+        criteria.add(EMPLOYER_NAME);
+        criteria.add(EMPLOYMENT_STATUS);
+        criteria.add(PAYGRADE);
 
         return criteria;
+    }
+
+    public static TestEnum fromValue(String value) {
+        for (TestEnum criterion : TestEnum.values()) {
+            if (criterion.toString().equalsIgnoreCase(value)) {
+                return criterion;
+            }
+        }
+        throw new IllegalArgumentException("Unknown enum value: " + value);
     }
 
 }

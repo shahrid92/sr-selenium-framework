@@ -293,6 +293,24 @@ public class TestRun extends TestInit {
         }
     }
 
+    @And("select display fields as below")
+    public void selectDisplayFields(List<Map<String, String>> fields){
+        for(Map<String,String> f:fields){
+            new PIMPage(this.driver)
+                    .selectDisplayFieldGroup(f.get("Field Group"),f.get("Display Field"));
+        }
+
+        new CommonSteps(this.driver)
+                .clickByText("Save");
+
+    }
+
+    @Then("Verify new report title name is {string}")
+    public void verifyReportTitle(String text){
+        new CommonSteps(this.driver)
+                .verifyPageText(text);
+    }
+
 
     //Cucumber
     @BeforeMethod
