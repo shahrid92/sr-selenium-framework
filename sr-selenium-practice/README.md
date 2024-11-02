@@ -12,6 +12,14 @@ Mandatory argument ``-Dtags``
 
 to find test tags refer to the BDD feature files
 
+#### Trigger Gitlab pipelines using API
+
+
+
+```shell
+curl -X POST --fail -F token=glptt-e1485617ddefd9734f9829ef2748b0013f9c8557 -F "ref=REF_NAME" -F "variables[RUN_NIGHTLY_BUILD]=true" http://localhost/api/v4/projects/35/trigger/pipeline
+```
+
 #### Execute TDD TestNG XML file using maven
 
 
@@ -35,6 +43,8 @@ to find test tags refer to the BDD feature files
 
 - [ ] Need to setup app docker to access db for scenario
 - [ ] explore mockito framework for mock or stub
+- [ ] setup parallel test testng and cucumber for docker
+- [ ] create docker compose yaml ondemand]
 
 * test. [^1]
 

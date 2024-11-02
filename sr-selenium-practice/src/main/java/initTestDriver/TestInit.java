@@ -4,12 +4,13 @@ import common.utilities.testdata.CSVUtils;
 import org.testng.annotations.*;
 import common.TestBase;
 
+import java.net.MalformedURLException;
 
 
 public class TestInit extends TestBase {
 
     @BeforeMethod
-    public void setupDriver(){
+    public void setupDriver() {
         this.setupBrowser();
     }
 

@@ -16,8 +16,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.annotations.Listeners;
 import com.github.javafaker.Faker;
-
-
+import org.openqa.selenium.remote.RemoteWebDriver;
+import java.net.URL;
 
 
 @Listeners({ListenerTest.class,actionListener.class})
@@ -26,11 +26,13 @@ public class TestBase {
 
     protected Faker faker;
     public WebDriver drivers;
-    public WebDriver driver;
+//    public WebDriver driver;
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    //public static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
     public static long  globalTimestamp;
 
     public ScenarioContext scenarioContext = new ScenarioContext();
-    public void setupBrowser() {
+    public void setupBrowser()  {
         ChromeOptions options;
         ReadConfigFile prop = new ReadConfigFile();
         TestEnum browser = TestEnum.valueOf(prop.getProperties(BROWSER.toString()));
@@ -43,7 +45,15 @@ public class TestBase {
                 //options.setBrowserVersion("119.0.6045.106");
                 //options.setCapability("browserVersion", "119.0.6045.106");
                 options.addArguments("--remote-allow-origins=*");
-                drivers = new ChromeDriver(options);
+
+                //drivers = new ChromeDriver(options);
+                try{
+                    driver.set(new RemoteWebDriver(new URL("http://localhost:4444"), options));
+                    System.out.println("Active Thread :" + Thread.currentThread().getId());
+                }catch (Exception es){
+                    System.out.println(es.getMessage());
+                }
+
                 createNewFolder();
                 break;
             case FIREFOX:
@@ -56,17 +66,17 @@ public class TestBase {
 
         }
 
-        webDriverListener wdl = new webDriverListener(drivers);
-        EventFiringDecorator<WebDriver> d = new EventFiringDecorator<>(wdl);
+      //  webDriverListener wdl = new webDriverListener(drivers.get());
+     //  EventFiringDecorator<WebDriver> d = new EventFiringDecorator<>(wdl);
 
-        this.driver = d.decorate(drivers);
-        this.driver.manage().window().maximize();
-        this.driver.get(baseUri);
+     //   this.driver = d.decorate(drivers.get());
+        this.driver.get().manage().window().maximize();
+        this.driver.get().get(baseUri);
 
     }
 
     protected WebDriver getDriver() {
-        return driver;
+        return driver.get();
     }
 
     protected void tearDown() {
@@ -75,7 +85,7 @@ public class TestBase {
         {
             try
             {
-                driver.quit();
+                driver.get().quit();
             }
             catch (WebDriverException e) {
                 System.out.println("***** CAUGHT WEBDRIVEREXCEPTION IN DRIVER TEARDOWN *****");

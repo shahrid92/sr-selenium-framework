@@ -2,6 +2,7 @@
 
 Feature: To test orange demo website
 
+  @Sanity-1
   Scenario Outline:  User login with admin credential
     Given Users launch browser and login as "<username>" and "<password>"
 
@@ -20,7 +21,7 @@ Feature: To test orange demo website
     Examples:
       | username | password |
       | Admin    | admin123 |
-
+  @Test
   Scenario Outline: As Admin search employee with role
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to "Admin" page
@@ -33,7 +34,7 @@ Feature: To test orange demo website
       | username | password |
       | Admin    | admin123 |
 
-
+  @Test
   Scenario Outline: As Admin can navigate admin subppage
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to "Admin" page
@@ -50,7 +51,7 @@ Feature: To test orange demo website
       | username | password |
       | Admin    | admin123 |
 
-
+  @Test
   Scenario Outline:  As Admin create new employees details and credentials
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to "PIM" page

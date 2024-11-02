@@ -18,6 +18,7 @@ import page.CommonSteps;
 import page.LoginPage;
 import page.PIMPage;
 
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,16 +39,27 @@ public class TestRun extends TestInit {
         this.tearDown();
     }
 
+    @Test
+    public void TestRun2(){
+        try{
+            Thread.sleep(10000);
+            System.out.println("Test Run 2 Executed");
+        }catch(Exception ex){
+            System.out.println("Test Run 2 NOt Executed");
+        }
+
+    }
+
     @Test(enabled = true, dataProvider = "userlist")
     @CustomAnnotation(key = "T1", value = "V1")
     @CustomAnnotation(key = "T2", value = "V2")
     @Given("Users launch browser and login as {string} and {string}")
-    public void UserLoginAndNavigateAdminPages(String user, String pass) throws Exception {
-        new LoginPage(driver)
+    public void UserLoginAndNavigateAdminPages(String user, String pass) {
+        new LoginPage(driver.get())
                 .LoginAction(user, pass)
                 .verifyDashboardTitle();
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("Admin")
                 .verifyPageText("System Users");
     }
@@ -55,29 +67,29 @@ public class TestRun extends TestInit {
     @Test(enabled = false)
     @Parameters({"userid", "password"})
     public void CreateUsers(String userid, String password) {
-
-        new LoginPage(driver)
+        System.out.println("TEST 2");
+        new LoginPage(driver.get())
                 .LoginAction(userid, password);
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("Admin")
                 .verifyPageText("System Users")
                 .clickByText("Add")
                 .verifyPageText("Add User");
 
-        new AdminPage(driver)
+        new AdminPage(driver.get())
                 .UserRoleSelection();
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("ESS");
 
-        new AdminPage(driver)
+        new AdminPage(driver.get())
                 .StatusSelection();
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("Enabled");
 
-        new AdminPage(driver)
+        new AdminPage(driver.get())
                 .EnterEmployeeName("Test01");
 
     }
@@ -86,7 +98,7 @@ public class TestRun extends TestInit {
     public void AdminAddNewUsersPage() {
         System.out.println("AdminAddNewUsersPage");
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText("Admin")
                 .verifyPageText("System Users")
                 .clickByText("Add")
@@ -101,27 +113,27 @@ public class TestRun extends TestInit {
         String lastName = this.scenarioContext.getContext(Context.LAST_NAME).toString();
         String empID = this.scenarioContext.getContext(Context.EMPID).toString();
 
-        new AdminPage(driver)
+        new AdminPage(driver.get())
                 .UserRoleSelection();
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("ESS");
 
-        new AdminPage(driver)
+        new AdminPage(driver.get())
                 .StatusSelection();
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("Enabled");
 
-        new AdminPage(driver)
+        new AdminPage(driver.get())
                 .EnterEmployeeName(firstName + " " + middleName + " " + lastName)
                 .SelectEmployeeName()
                 .EnterUserName(firstName + "_" + empID);
 
-        new AdminPage(driver).
+        new AdminPage(driver.get()).
                 EnterPassword("test123123");
 
-        new CommonSteps(driver)
+        new CommonSteps(driver.get())
                 .clickByText("Save")
                 .verifyPageText("Success")
                 .verifyPageText("System Users");
@@ -132,7 +144,7 @@ public class TestRun extends TestInit {
     @Then("Navigate to PIM and click add employee")
     public void AddNewEmployee() {
 
-        CommonSteps cm = new CommonSteps(this.driver);
+        CommonSteps cm = new CommonSteps(this.driver.get());
 
 
         cm.clickByText("PIM");
@@ -155,16 +167,16 @@ public class TestRun extends TestInit {
         String middleName = "Mike";
         String lastName = faker.name().lastName();
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .verifyPageText("Add Employee");
 
-        new PIMPage(this.driver)
+        new PIMPage(this.driver.get())
                 .EnterFirstName(firstName)
                 .EnterMiddleName(middleName)
                 .EnterLastName(lastName)
                 .EnterEmployeeID(empID);
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText("Save")
                 .verifyPageText("Personal Details");
 
@@ -181,17 +193,17 @@ public class TestRun extends TestInit {
         String middleName = this.scenarioContext.getContext(Context.MIDDLE_NAME).toString();
         String lastName = this.scenarioContext.getContext(Context.LAST_NAME).toString();
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .verifyPageText("System Users");
 
-        new PIMPage(this.driver)
+        new PIMPage(this.driver.get())
                 .EnterEmployeeName(firstName + middleName +lastName );
     }
 
     @Then("Navigate to {string} page")
     public void NavigatePage(String page){
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText(page)
                 .verifyPageText(page);
     }
@@ -200,22 +212,22 @@ public class TestRun extends TestInit {
     public void PIMSearchEmployeeName(DataTable empName){
 
         List<String> al = empName.asList();
-        PIMPage p = new PIMPage(this.driver);
+        PIMPage p = new PIMPage(this.driver.get());
         for(String a : al){
             p.searchEmpName(a);
         }
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText("Search");
 
     }
 
     @Then("Click user for edit")
     public void PIMEditButton(){
-        new PIMPage(this.driver)
+        new PIMPage(this.driver.get())
                 .clickEditButton();
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .verifyPageText("Personal Details");
     }
 
@@ -223,15 +235,15 @@ public class TestRun extends TestInit {
 
     @And("Select user role {string}")
     public void selectUserRole(String role){
-        AdminPage ap = new AdminPage(this.driver);
+        AdminPage ap = new AdminPage(this.driver.get());
         ap.selectbyUserRole(role);
-        new CommonSteps(this.driver).clickByText(role);
+        new CommonSteps(this.driver.get()).clickByText(role);
     }
 
     @And("Navigate subpage and verify page titles")
     public void NavigateSubPage(DataTable path){
 
-        CommonSteps cs = new CommonSteps(this.driver);
+        CommonSteps cs = new CommonSteps(this.driver.get());
 
         List<Map<String, String>> p = path.asMaps(String.class, String.class);
 
@@ -251,7 +263,7 @@ public class TestRun extends TestInit {
 
     @And("Search employee username and validate user exists")
     public void SearchEmployeeUsername(DataTable emp_username){
-        AdminPage ap = new AdminPage(this.driver);
+        AdminPage ap = new AdminPage(this.driver.get());
         String username = null;
         List<Map<String, String>> employeeList = emp_username.asMaps(String.class, String.class);
         for (Map<String, String> employee : employeeList) {
@@ -260,7 +272,7 @@ public class TestRun extends TestInit {
 
         ap.EnterSearchUsername(username);
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText("Search");
 
         ap.validateRecordFoundUsername(username);
@@ -268,27 +280,27 @@ public class TestRun extends TestInit {
 
     @And("Click edit found users")
     public void clickEdit(){
-        AdminPage ap = new AdminPage(this.driver);
+        AdminPage ap = new AdminPage(this.driver.get());
         ap.clickEdit();
     }
 
     @When("admin user at {string} page")
     public void userNavigateTo(String page){
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText("PIM")
                 .clickByText(page);
     }
 
     @Then("admin fill report name as {string}")
     public void setReportName(String reportName){
-        new PIMPage(this.driver)
+        new PIMPage(this.driver.get())
                 .setReportNameAs(reportName);
     }
 
     @And("add selection criteria as below")
     public void selectCriterion(List<Map<String, String>> criteria){
         for(Map<String,String> e:criteria){
-            new PIMPage(this.driver)
+            new PIMPage(this.driver.get())
                     .selectCriterion(e.get("Select1"),e.get("Select2"));
         }
     }
@@ -296,18 +308,18 @@ public class TestRun extends TestInit {
     @And("select display fields as below")
     public void selectDisplayFields(List<Map<String, String>> fields){
         for(Map<String,String> f:fields){
-            new PIMPage(this.driver)
+            new PIMPage(this.driver.get())
                     .selectDisplayFieldGroup(f.get("Field Group"),f.get("Display Field"));
         }
 
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .clickByText("Save");
 
     }
 
     @Then("Verify new report title name is {string}")
     public void verifyReportTitle(String text){
-        new CommonSteps(this.driver)
+        new CommonSteps(this.driver.get())
                 .verifyPageText(text);
     }
 
