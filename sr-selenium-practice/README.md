@@ -3,18 +3,22 @@
 #### Execute BDD using Cucumber using maven and tags
 
 Maven Profile 1 : cucumber-profile
-
+Parallel : False
 Mandatory argument ``-Dtags``
 
-``mvn test -Pcucumber-profile -Dtags=@SmokeTest``
+``mvn test -Pcucumber-profile -Dtags=@SmokeTest`` 
 
 ``mvn test -Pcucumber-profile -Dtags=@Test``
 
 to find test tags refer to the BDD feature files
 
+#### Cucumber Parallel Test Execution
+
+```shell
+ mvn test -Pcucumber-parallel -Dtags=@Test
+```
+
 #### Trigger Gitlab pipelines using API
-
-
 
 ```shell
 curl -X POST --fail -F token=glptt-e1485617ddefd9734f9829ef2748b0013f9c8557 -F "ref=REF_NAME" -F "variables[RUN_NIGHTLY_BUILD]=true" http://localhost/api/v4/projects/35/trigger/pipeline

@@ -14,7 +14,7 @@ public enum TestEnum {
     EMPLOYER_NAME("Employee Name"),
     EMPLOYMENT_STATUS("Employment Status"),
     PAYGRADE("Pay Grade"),
-
+    PARALLEL_REMOTE("parallel"),
     REPORT("");
 
     private final String text;

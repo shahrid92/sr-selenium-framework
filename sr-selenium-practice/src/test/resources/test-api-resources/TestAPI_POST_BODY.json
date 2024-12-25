@@ -1,0 +1,11 @@
+{
+  "source": "rentasPortal",
+  "name": "fundSwap",
+  "timestamp": "1718788985",
+  "reference": "240619FNDSWP0002",
+  "requestBody": {
+    "bankCode": "MBBEMYKL",
+    "function": "IN",
+    "amount": "120000.00"
+  }
+}

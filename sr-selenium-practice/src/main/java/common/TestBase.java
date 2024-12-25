@@ -3,8 +3,6 @@ package common;
 import common.utilities.ReadConfigFile;
 import common.utilities.ScenarioContext;
 import common.utilities.TestEnum;
-import static common.utilities.TestEnum.BASEURL;
-import static common.utilities.TestEnum.BROWSER;
 
 import common.utilities.listener.actionListener;
 import common.utilities.listener.webDriverListener;
@@ -18,6 +16,8 @@ import org.testng.annotations.Listeners;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
+
+import static common.utilities.TestEnum.*;
 
 
 @Listeners({ListenerTest.class,actionListener.class})
@@ -37,22 +37,28 @@ public class TestBase {
         ReadConfigFile prop = new ReadConfigFile();
         TestEnum browser = TestEnum.valueOf(prop.getProperties(BROWSER.toString()));
         String baseUri = prop.getProperties(BASEURL.toString());
+        boolean isParallel = Boolean.valueOf(prop.getProperties(PARALLEL_REMOTE.toString()));
         this.faker = new Faker();
         switch (browser) {
             case CHROME:
                 options = new ChromeOptions();
-                //options.addArguments("--headless=new");
-                //options.setBrowserVersion("119.0.6045.106");
-                //options.setCapability("browserVersion", "119.0.6045.106");
+
                 options.addArguments("--remote-allow-origins=*");
 
-                //drivers = new ChromeDriver(options);
-                try{
-                    driver.set(new RemoteWebDriver(new URL("http://localhost:4444"), options));
-                    System.out.println("Active Thread :" + Thread.currentThread().getId());
-                }catch (Exception es){
-                    System.out.println(es.getMessage());
+                if(isParallel){
+                    try{
+                        driver.set(new RemoteWebDriver(new URL("http://localhost:4444"), options));
+                        System.out.println("Active Thread :" + Thread.currentThread().getId());
+                    }catch (Exception es){
+                        System.out.println(es.getMessage());
+                    }
+                }else{
+//                    options.addArguments("--headless=new");
+//                    options.setBrowserVersion("119.0.6045.106");
+//                    options.setCapability("browserVersion", "119.0.6045.106");
+                    driver.set(new ChromeDriver(options));
                 }
+
 
                 createNewFolder();
                 break;

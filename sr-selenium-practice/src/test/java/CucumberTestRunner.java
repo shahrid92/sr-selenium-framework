@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 @CucumberOptions(
         features="src/test/resources/features",
         glue={""},
-        plugin = {"pretty", "html:target/cucumber.html"},
+        plugin = {"pretty", "html:target/cucumber.html","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
         tags = "@Sanity-1") // default tags if no pass parameter from cli
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {
     @Override

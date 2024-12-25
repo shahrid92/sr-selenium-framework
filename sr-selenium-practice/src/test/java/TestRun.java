@@ -9,6 +9,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -18,15 +24,14 @@ import page.CommonSteps;
 import page.LoginPage;
 import page.PIMPage;
 
-import java.net.MalformedURLException;
+import java.io.ByteArrayInputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static common.utilities.TestEnum.ADMIN_USERNAME_TEXTFIELD;
-
+@Epic("Web Application Regression Testing")
+@Feature("orange hrm")
 public class TestRun extends TestInit {
 
     @Before
@@ -54,7 +59,9 @@ public class TestRun extends TestInit {
     @CustomAnnotation(key = "T1", value = "V1")
     @CustomAnnotation(key = "T2", value = "V2")
     @Given("Users launch browser and login as {string} and {string}")
+    @Step("User Login")
     public void UserLoginAndNavigateAdminPages(String user, String pass) {
+
         new LoginPage(driver.get())
                 .LoginAction(user, pass)
                 .verifyDashboardTitle();
