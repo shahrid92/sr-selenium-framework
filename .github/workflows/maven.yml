@@ -5,13 +5,13 @@ name: TestGithubRunners # this is main title of the runner job
  
 on:
   push:
-    branches: [ "main" ] # trigger if someone do push on the main branch
+    branches: [ "test-workflows" ] # trigger if someone do push on the main branch
   pull_request:
-    branches: [ "main" ] # trigger if someone do pull request on the main branch
+    branches: [ "test-workflows" ] # trigger if someone do pull request on the main branch
 
 jobs: # mandatory
-  this-is-test-stage:  # name of the stage also?
-      name: this is first step # name of the stage 
+  first-stage:  # name of the stage also?
+      name: this is first stage # name of the stage 
       runs-on: self-hosted #tag from runner
 
       steps:
@@ -19,7 +19,22 @@ jobs: # mandatory
         uses: actions/checkout@v4 # checkout@v4 from github/actions repo
         with:
           repository: shahrid92/sr-selenium-framework
-          ref: main
+          ref: test-workflows
 
-      - name: Test echo # name of the step
-        run: ls -la /usr/local
+      - name: Test echo work folder # name of the step
+        run: ls -la /usr/local/_work
+
+  second-stage:
+      name: this is second stage # name of the stage 
+      runs-on: self-hosted #tag from runner
+
+      steps:
+      - name: build projects
+        uses: actions/setup-java@v4
+          with:
+            java-version: '11' # Specify the Java version
+            distribution: 'temurin' # Options: 'temurin', 'zulu', etc.
+        run: java --version
+
+      - name: print working file
+        uses: pwd && ls -la
