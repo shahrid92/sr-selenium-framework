@@ -34,7 +34,7 @@ jobs: # mandatory
         with:
           java-version: '11' # Specify the Java version
           distribution: 'temurin' # Options: 'temurin', 'zulu', etc.
-        run: java --version
+      - run: java --version
 
       - name: print working file
         uses: pwd && ls -la
