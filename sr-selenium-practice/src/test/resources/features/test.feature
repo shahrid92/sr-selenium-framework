@@ -21,6 +21,7 @@ Feature: To test orange demo website
     Examples:
       | username | password |
       | Admin    | admin123 |
+
   @Test
   Scenario Outline: As Admin search employee with role
     Given Users launch browser and login as "<username>" and "<password>"
@@ -51,7 +52,6 @@ Feature: To test orange demo website
       | username | password |
       | Admin    | admin123 |
 
-  @Test
   Scenario Outline:  As Admin create new employees details and credentials
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to "PIM" page
@@ -63,7 +63,6 @@ Feature: To test orange demo website
       | username | password |
       | Admin    | admin123 |
 
-  @Test
   Scenario Outline: as Admin able to create summary employee report
     Given Users launch browser and login as "<username>" and "<password>"
     When admin user at "Reports" page

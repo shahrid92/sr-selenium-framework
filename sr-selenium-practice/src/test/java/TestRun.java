@@ -1,4 +1,5 @@
 import common.utilities.Context;
+import common.utilities.RetryAnalyzer;
 import common.utilities.ScenarioContext;
 import common.utilities.annotation.CustomAnnotation;
 import initTestDriver.TestInit;
@@ -55,7 +56,7 @@ public class TestRun extends TestInit {
 
     }
 
-    @Test(enabled = true, dataProvider = "userlist")
+    @Test(enabled = true, dataProvider = "userlist",retryAnalyzer = RetryAnalyzer.class)
     @CustomAnnotation(key = "T1", value = "V1")
     @CustomAnnotation(key = "T2", value = "V2")
     @Given("Users launch browser and login as {string} and {string}")
@@ -208,6 +209,7 @@ public class TestRun extends TestInit {
     }
 
     @Then("Navigate to {string} page")
+    @Step("Navigate page")
     public void NavigatePage(String page){
 
         new CommonSteps(this.driver.get())
@@ -247,7 +249,9 @@ public class TestRun extends TestInit {
         new CommonSteps(this.driver.get()).clickByText(role);
     }
 
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @And("Navigate subpage and verify page titles")
+    @Step("NAvigate subpage and verify")
     public void NavigateSubPage(DataTable path){
 
         CommonSteps cs = new CommonSteps(this.driver.get());
@@ -324,6 +328,7 @@ public class TestRun extends TestInit {
 
     }
 
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Then("Verify new report title name is {string}")
     public void verifyReportTitle(String text){
         new CommonSteps(this.driver.get())
@@ -331,11 +336,12 @@ public class TestRun extends TestInit {
     }
 
 
+
     //Cucumber
-    @BeforeMethod
-    public static void afterTestMethod(ITestResult result) {
-        System.out.println(result.getMethod().getMethodName());
-    }
+//    @BeforeMethod
+//    public static void afterTestMethod(ITestResult result) {
+//        System.out.println(result.getMethod().getMethodName());
+//    }
 
 
 }
