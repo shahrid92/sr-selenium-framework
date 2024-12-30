@@ -31,9 +31,9 @@ jobs: # mandatory
       steps:
       - name: build projects
         uses: actions/setup-java@v4
-          with:
-            java-version: '11' # Specify the Java version
-            distribution: 'temurin' # Options: 'temurin', 'zulu', etc.
+        with:
+          java-version: '11' # Specify the Java version
+          distribution: 'temurin' # Options: 'temurin', 'zulu', etc.
         run: java --version
 
       - name: print working file
