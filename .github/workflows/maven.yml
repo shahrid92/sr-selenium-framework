@@ -37,4 +37,4 @@ jobs: # mandatory
       - run: java --version
 
       - name: print working file
-        uses: pwd && ls -la
+        run: pwd && ls -la
