@@ -5,9 +5,9 @@ name: TestGithubRunners # this is main title of the runner job
  
 on:
   push:
-    branches: [ "test-workflows" ] # trigger if someone do push on the main branch
+    branches: [ "test-workflow" ] # trigger if someone do push on the main branch
   pull_request:
-    branches: [ "test-workflows" ] # trigger if someone do pull request on the main branch
+    branches: [ "test-workflow" ] # trigger if someone do pull request on the main branch
 
 jobs: # mandatory
   first-stage:  # name of the stage also?
@@ -19,7 +19,7 @@ jobs: # mandatory
         uses: actions/checkout@v4 # checkout@v4 from github/actions repo
         with:
           repository: shahrid92/sr-selenium-framework
-          ref: test-workflows
+          ref: test-workflow
 
       - name: Test echo work folder # name of the step
         run: ls -la /usr/local/_work
@@ -29,7 +29,7 @@ jobs: # mandatory
       runs-on: self-hosted #tag from runner
 
       steps:
-      - name: build projects
+      - name: Setup Java 11
         uses: actions/setup-java@v4
         with:
           java-version: '11' # Specify the Java version
