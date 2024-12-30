@@ -1,35 +1,25 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# For references of usage yaml. etc action/<github actions>: https://github.com/actions
 
-name: TestGithubRunners
-
+name: TestGithubRunners # this is main title of the runner job
+ 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] # trigger if someone do push on the main branch
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ] # trigger if someone do pull request on the main branch
 
-jobs:
-  build:
+jobs: # mandatory
+  this-is-test-stage:  # name of the stage also?
+      name: this is first step # name of the stage 
+      runs-on: self-hosted #tag from runner
 
-    runs-on: self-hosted
+      steps:
+      - name: CheckOut Code # name of the step 
+        uses: actions/checkout@v4 # checkout@v4 from github/actions repo
+        with:
+          repository: shahrid92/sr-selenium-framework
+          ref: main
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Test echo
-      run: ls -la /usr/local
+      - name: Test echo # name of the step
+        run: ls -la /usr/local
