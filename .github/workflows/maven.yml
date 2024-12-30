@@ -24,7 +24,7 @@ jobs: # mandatory
       - name: Test echo work folder # name of the step
         run: ls -la /usr/local/_work
 
-  second-stage:
+  second-stage: # this will not appear in github action ui
       name: this is second stage # name of the stage 
       runs-on: self-hosted #tag from runner
 
