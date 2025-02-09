@@ -1,6 +1,5 @@
 import common.utilities.Context;
 import common.utilities.RetryAnalyzer;
-import common.utilities.ScenarioContext;
 import common.utilities.annotation.CustomAnnotation;
 import initTestDriver.TestInit;
 import io.cucumber.datatable.DataTable;
@@ -10,22 +9,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.testng.ITestResult;
-import org.testng.annotations.BeforeMethod;
+import io.qameta.allure.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import page.AdminPage;
 import page.CommonSteps;
 import page.LoginPage;
 import page.PIMPage;
-
-import java.io.ByteArrayInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -61,7 +51,13 @@ public class TestRun extends TestInit {
     @CustomAnnotation(key = "T2", value = "V2")
     @Given("Users launch browser and login as {string} and {string}")
     @Step("User Login")
+    @Link(name = "requirements", url="https://www.programiz.com/c-programming/examples/add-numbers",type = "Trello")
     public void UserLoginAndNavigateAdminPages(String user, String pass) {
+
+        Allure.issue("Issue-1","");
+        Allure.link("https://www.example.com/");
+        Allure.label("Test suite","Regression Suite 1");
+
 
         new LoginPage(driver.get())
                 .LoginAction(user, pass)
@@ -70,6 +66,7 @@ public class TestRun extends TestInit {
         new CommonSteps(driver.get())
                 .clickByText("Admin")
                 .verifyPageText("System Users");
+
     }
 
     @Test(enabled = false)
@@ -334,14 +331,5 @@ public class TestRun extends TestInit {
         new CommonSteps(this.driver.get())
                 .verifyPageText(text);
     }
-
-
-
-    //Cucumber
-//    @BeforeMethod
-//    public static void afterTestMethod(ITestResult result) {
-//        System.out.println(result.getMethod().getMethodName());
-//    }
-
 
 }

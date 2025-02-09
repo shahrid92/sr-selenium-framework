@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="REST Assured API TEST">
+    <listeners>
+        <listener class-name="common.utilities.RetryListener"/>
+    </listeners>
     <test name="API TEST 1">
         <classes>
             <class name="api.TestAPI"/>

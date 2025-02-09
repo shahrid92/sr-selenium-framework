@@ -5,13 +5,11 @@ import common.utilities.ScenarioContext;
 import common.utilities.TestEnum;
 
 import common.utilities.listener.actionListener;
-import common.utilities.listener.webDriverListener;
 import listener.ListenerTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.annotations.Listeners;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -25,38 +23,44 @@ import static common.utilities.TestEnum.*;
 public class TestBase {
 
     protected Faker faker;
-    public WebDriver drivers;
-//    public WebDriver driver;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    //public static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
     public static long  globalTimestamp;
-
     public ScenarioContext scenarioContext = new ScenarioContext();
+
     public void setupBrowser()  {
         ChromeOptions options;
         ReadConfigFile prop = new ReadConfigFile();
-        TestEnum browser = TestEnum.valueOf(prop.getProperties(BROWSER.toString()));
-        String baseUri = prop.getProperties(BASEURL.toString());
-        boolean isParallel = Boolean.valueOf(prop.getProperties(PARALLEL_REMOTE.toString()));
+        TestEnum browser = TestEnum.valueOf(prop.getProperties(BROWSER));
+        String baseUri = prop.getProperties(BASEURL);
+        boolean isParallel = Boolean.valueOf(prop.getProperties(PARALLEL_REMOTE));
+        boolean isRemote = Boolean.valueOf(prop.getProperties(BROWSER_REMOTE));
         this.faker = new Faker();
         switch (browser) {
             case CHROME:
                 options = new ChromeOptions();
-
                 options.addArguments("--remote-allow-origins=*");
 
                 if(isParallel){
                     try{
-                        driver.set(new RemoteWebDriver(new URL("http://localhost:4444"), options));
+                        driver.set(new RemoteWebDriver(new URL(prop.getProperties(BROWSER_REMOTE_URL)), options));
                         System.out.println("Active Thread :" + Thread.currentThread().getId());
                     }catch (Exception es){
                         System.out.println(es.getMessage());
                     }
                 }else{
+                      if(isRemote){
+                          try{
+                              driver.set(new RemoteWebDriver(new URL(prop.getProperties(BROWSER_REMOTE_URL)), options));
+                              System.out.println("Active Thread :" + Thread.currentThread().getId());
+                          }catch (Exception es){
+                              System.out.println(es.getMessage());
+                          }
+                      }else{
+                          driver.set(new ChromeDriver(options));
+                      }
 //                    options.addArguments("--headless=new");
 //                    options.setBrowserVersion("119.0.6045.106");
 //                    options.setCapability("browserVersion", "119.0.6045.106");
-                    driver.set(new ChromeDriver(options));
                 }
 
 
@@ -81,12 +85,7 @@ public class TestBase {
 
     }
 
-    protected WebDriver getDriver() {
-        return driver.get();
-    }
-
     protected void tearDown() {
-
         if (driver != null)
         {
             try

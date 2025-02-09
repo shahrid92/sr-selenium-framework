@@ -24,10 +24,14 @@
                         <configuration>
                             <includes>
                                 <include>**/*CucumberTestRunner.java</include>
+                                <include>**/*CucumberFailedTestRunner.java</include>
                             </includes>
-                            <argLine>-Dcucumber.filter.tags=${tags}</argLine>
-                            <parallel>methods</parallel>
+<!--                            <argLine>-Dcucumber.filter.tags=${tags}</argLine>-->
+                            <parallel>methods</parallel> <!-- Run methods in parallel -->
                             <useUnlimitedThreads>true</useUnlimitedThreads>
+                            <systemPropertyVariables>
+                                <cucumber.filter.tags>${tags}</cucumber.filter.tags>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
 
@@ -51,6 +55,9 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>3.5.1</version>
                         <configuration>
+                            <includes>
+                                <include>**/*CucumberFailedTestRunner.java</include>
+                            </includes>
                             <suiteXmlFiles>
                                 <suiteXmlFile>testng-suites/testng-cucumber-parallel.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -83,6 +90,7 @@
                             <argLine>
                                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.20.1/aspectjweaver-1.9.20.1.jar"
                             </argLine>
+                            <rerunFailingTestsCount>3</rerunFailingTestsCount>
                         </configuration>
                     </plugin>
 
