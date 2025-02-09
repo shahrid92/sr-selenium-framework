@@ -103,7 +103,7 @@ No specific configuration define
 - [x] Develop test script using BDD feature file.
 - [x] Test API using RestAssured.
 - [x] Integrate with allure report. 
-- [x] add custom listener for every test step.
+- [x] add custom listener for every test step. a
 - [x] import test data using excel,csv and data provider testng
 
 ## Resources
