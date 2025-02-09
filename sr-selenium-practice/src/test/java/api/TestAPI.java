@@ -1,4 +1,5 @@
 package api;
+import common.utilities.RetryAnalyzer;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -32,7 +33,7 @@ public class TestAPI {
                         .enablePrettyPrinting(true));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true,retryAnalyzer = RetryAnalyzer.class)
     public void test_api_get() throws IOException{
 
         String jsonBody = generateStringFromResource("C:\\Users\\shahr\\Shah Workspace\\01 Practice\\sr-selenium-framework\\sr-selenium-practice\\src\\test\\resources\\test-api-resources\\TestAPI_POST_BODY.json");
@@ -52,7 +53,7 @@ public class TestAPI {
     }
 
 
-    @Test
+    @Test(enabled = false)
     public void TestAPI2(){
         RestAssured.baseURI = "https://79237dcd-8cc2-4180-8fdd-2fcee45847e6.mock.pstmn.io";
 

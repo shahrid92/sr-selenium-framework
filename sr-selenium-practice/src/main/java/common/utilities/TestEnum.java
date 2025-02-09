@@ -1,6 +1,7 @@
 package common.utilities;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public enum TestEnum {
 
@@ -15,13 +16,19 @@ public enum TestEnum {
     EMPLOYMENT_STATUS("Employment Status"),
     PAYGRADE("Pay Grade"),
     PARALLEL_REMOTE("parallel"),
-    REPORT("");
+    REPORT(""),
+    BROWSER_REMOTE("browser.remote"),
+    BROWSER_REMOTE_URL("browser.remote.url"),
+    ELEMENTS_TIMEOUT("elements.timeout");
 
     private final String text;
+    //private final Pattern regexp;
 
     TestEnum(final String text){
         this.text = text;
+        //this.regexp = Pattern.compile(pattern.replace(".", "\\.").replace("*", ".*"));
     }
+
 
     @Override
     public String toString(){

@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="My Test Suite">
+    <listeners>
+        <listener class-name="common.utilities.RetryListener"/>
+    </listeners>
+    <test name="My Test">
+        <classes>
+            <class name="path.to.TestRetry"/>
+        </classes>
+    </test>
+</suite>
