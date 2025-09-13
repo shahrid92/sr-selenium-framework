@@ -4,7 +4,8 @@ public enum ElementsEnums {
 
     EMPLOYER_NAME("Employee Name",".oxd-autocomplete-text-input > input"),
     EMPLOYMENT_STATUS("Employment Status",""),
-    PAYGRADE("Pay Grade","");
+    PAYGRADE("Pay Grade",""),
+    MENU_JOBS("Jobs","//*[@class='oxd-topbar-body-nav-tab-item'][text()[contains(.,'Job')]]");
 
     private final String text;
     private final String path;

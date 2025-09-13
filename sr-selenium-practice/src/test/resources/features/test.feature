@@ -46,12 +46,12 @@ Feature: To test orange demo website
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to "Admin" page
     And Navigate subpage and verify page titles
-      | Path                  | Title             |
-      | Job/Job Titles        | Job Titles        |
-      | Job/Pay Grades        | Pay Grades        |
-      | Job/Employment Status | Employment Status |
-      | Job/Categories        | Job Categories    |
-      | Job/Work Shifts       | Work Shifts       |
+      | Path              | Title             |
+      | Job Titles        | Job Titles        |
+      | Pay Grades        | Pay Grades        |
+      | Employment Status | Employment Status |
+      | Categories        | Job Categories    |
+      | Work Shifts       | Work Shifts       |
 
 
     Examples:

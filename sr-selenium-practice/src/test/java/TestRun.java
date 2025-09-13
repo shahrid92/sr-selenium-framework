@@ -1,4 +1,5 @@
 import common.utilities.Context;
+import common.utilities.ElementsEnums;
 import common.utilities.RetryAnalyzer;
 import common.utilities.annotation.CustomAnnotation;
 import initTestDriver.TestInit;
@@ -16,10 +17,12 @@ import page.AdminPage;
 import page.CommonSteps;
 import page.LoginPage;
 import page.PIMPage;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 
 @Epic("Web Application Regression Testing")
 @Feature("orange hrm")
@@ -36,27 +39,27 @@ public class TestRun extends TestInit {
     }
 
     @Test
-    public void TestRun2(){
-        try{
+    public void TestRun2() {
+        try {
             Thread.sleep(10000);
             System.out.println("Test Run 2 Executed");
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("Test Run 2 NOt Executed");
         }
 
     }
 
-    @Test(enabled = true, dataProvider = "userlist",retryAnalyzer = RetryAnalyzer.class)
+    @Test(enabled = true, dataProvider = "userlist", retryAnalyzer = RetryAnalyzer.class)
     @CustomAnnotation(key = "T1", value = "V1")
     @CustomAnnotation(key = "T2", value = "V2")
     @Given("Users launch browser and login as {string} and {string}")
     @Step("User Login")
-    @Link(name = "requirements", url="https://www.programiz.com/c-programming/examples/add-numbers",type = "Trello")
+    @Link(name = "requirements", url = "https://www.programiz.com/c-programming/examples/add-numbers", type = "Trello")
     public void UserLoginAndNavigateAdminPages(String user, String pass) {
 
-        Allure.issue("Issue-1","");
+        Allure.issue("Issue-1", "");
         Allure.link("https://www.example.com/");
-        Allure.label("Test suite","Regression Suite 1");
+        Allure.label("Test suite", "Regression Suite 1");
 
 
         new LoginPage(driver.get())
@@ -202,12 +205,12 @@ public class TestRun extends TestInit {
                 .verifyPageText("System Users");
 
         new PIMPage(this.driver.get())
-                .EnterEmployeeName(firstName + middleName +lastName );
+                .EnterEmployeeName(firstName + middleName + lastName);
     }
 
     @Then("Navigate to {string} page")
     @Step("Navigate page")
-    public void NavigatePage(String page){
+    public void NavigatePage(String page) {
 
         new CommonSteps(this.driver.get())
                 .clickByText(page)
@@ -215,11 +218,11 @@ public class TestRun extends TestInit {
     }
 
     @And("Search this employee name")
-    public void PIMSearchEmployeeName(DataTable empName){
+    public void PIMSearchEmployeeName(DataTable empName) {
 
         List<String> al = empName.asList();
         PIMPage p = new PIMPage(this.driver.get());
-        for(String a : al){
+        for (String a : al) {
             p.searchEmpName(a);
         }
 
@@ -229,7 +232,7 @@ public class TestRun extends TestInit {
     }
 
     @Then("Click user for edit")
-    public void PIMEditButton(){
+    public void PIMEditButton() {
         new PIMPage(this.driver.get())
                 .clickEditButton();
 
@@ -237,10 +240,8 @@ public class TestRun extends TestInit {
                 .verifyPageText("Personal Details");
     }
 
-
-
     @And("Select user role {string}")
-    public void selectUserRole(String role){
+    public void selectUserRole(String role) {
         AdminPage ap = new AdminPage(this.driver.get());
         ap.selectbyUserRole(role);
         new CommonSteps(this.driver.get()).clickByText(role);
@@ -248,29 +249,24 @@ public class TestRun extends TestInit {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     @And("Navigate subpage and verify page titles")
-    @Step("NAvigate subpage and verify")
-    public void NavigateSubPage(DataTable path){
+    @Step("Navigate subpage and verify")
+    public void NavigateSubPage(DataTable path) {
 
-        CommonSteps cs = new CommonSteps(this.driver.get());
+        CommonSteps cs = new CommonSteps(driver.get());
 
         List<Map<String, String>> p = path.asMaps(String.class, String.class);
 
-        for (Map<String, String> pp : p){
-            String[] result = pp.get("Path").split("/");
-            for (String a : result){
-                cs.clickByText(a);
-            }
+        for (Map<String, String> pp : p) {
+            String result = pp.get("Path");
+            cs.clickByText("XPATH", ElementsEnums.MENU_JOBS.getPath());
+            cs.clickByText(result);
             cs.verifyPageText(pp.get("Title"));
         }
-
-
-
-
 
     }
 
     @And("Search employee username and validate user exists")
-    public void SearchEmployeeUsername(DataTable emp_username){
+    public void SearchEmployeeUsername(DataTable emp_username) {
         AdminPage ap = new AdminPage(this.driver.get());
         String username = null;
         List<Map<String, String>> employeeList = emp_username.asMaps(String.class, String.class);
@@ -287,37 +283,37 @@ public class TestRun extends TestInit {
     }
 
     @And("Click edit found users")
-    public void clickEdit(){
+    public void clickEdit() {
         AdminPage ap = new AdminPage(this.driver.get());
         ap.clickEdit();
     }
 
     @When("admin user at {string} page")
-    public void userNavigateTo(String page){
+    public void userNavigateTo(String page) {
         new CommonSteps(this.driver.get())
                 .clickByText("PIM")
                 .clickByText(page);
     }
 
     @Then("admin fill report name as {string}")
-    public void setReportName(String reportName){
+    public void setReportName(String reportName) {
         new PIMPage(this.driver.get())
                 .setReportNameAs(reportName);
     }
 
     @And("add selection criteria as below")
-    public void selectCriterion(List<Map<String, String>> criteria){
-        for(Map<String,String> e:criteria){
+    public void selectCriterion(List<Map<String, String>> criteria) {
+        for (Map<String, String> e : criteria) {
             new PIMPage(this.driver.get())
-                    .selectCriterion(e.get("Select1"),e.get("Select2"));
+                    .selectCriterion(e.get("Select1"), e.get("Select2"));
         }
     }
 
     @And("select display fields as below")
-    public void selectDisplayFields(List<Map<String, String>> fields){
-        for(Map<String,String> f:fields){
+    public void selectDisplayFields(List<Map<String, String>> fields) {
+        for (Map<String, String> f : fields) {
             new PIMPage(this.driver.get())
-                    .selectDisplayFieldGroup(f.get("Field Group"),f.get("Display Field"));
+                    .selectDisplayFieldGroup(f.get("Field Group"), f.get("Display Field"));
         }
 
         new CommonSteps(this.driver.get())
@@ -327,7 +323,7 @@ public class TestRun extends TestInit {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     @Then("Verify new report title name is {string}")
-    public void verifyReportTitle(String text){
+    public void verifyReportTitle(String text) {
         new CommonSteps(this.driver.get())
                 .verifyPageText(text);
     }
