@@ -1,6 +1,6 @@
 @SmokeTest
 @allure.label.layer:web
-@allure.label.owner:eroshenkoam
+@allure.label.owner:eroshenkoams
 Feature: To test orange demo website
 
   @Sanity-1
@@ -41,7 +41,7 @@ Feature: To test orange demo website
     Examples:
       | username | password |
       | Admin    | admin123 |
-  @Test
+  @Test @TC001
   Scenario Outline: As Admin can navigate admin subppage
     Given Users launch browser and login as "<username>" and "<password>"
     Then Navigate to "Admin" page

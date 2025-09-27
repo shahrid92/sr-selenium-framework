@@ -1,0 +1,11 @@
+
+CREATE TABLE IF NOT EXISTS allure_test_results (
+    uuid CHAR(36) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    start VARCHAR(50) NOT NULL,
+    stop VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+

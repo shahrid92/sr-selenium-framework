@@ -1,5 +1,7 @@
 package common;
 
+import common.dto.GetAllureJson;
+import common.utilities.JDBCHelper;
 import common.utilities.ReadConfigFile;
 import common.utilities.ScenarioContext;
 import common.utilities.TestEnum;
@@ -26,6 +28,7 @@ public class TestBase {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public static long  globalTimestamp;
     public ScenarioContext scenarioContext = new ScenarioContext();
+    //public GetAllureJson ga;
 
     public void setupBrowser()  {
         ChromeOptions options;
@@ -65,6 +68,9 @@ public class TestBase {
 
 
                 createNewFolder();
+
+                JDBCHelper db = new JDBCHelper();
+                db.create();
                 break;
             case FIREFOX:
                 break;
@@ -98,6 +104,7 @@ public class TestBase {
             }
 
         }
+
     }
 
     public static void createNewFolder(){

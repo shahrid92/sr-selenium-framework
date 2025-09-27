@@ -7,7 +7,6 @@ import java.lang.annotation.Repeatable;
 @Repeatable(TestContainer.class)
 public @interface CustomAnnotation {
     String value() default "";
-
     String key() default "";
 
 }

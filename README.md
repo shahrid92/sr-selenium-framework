@@ -109,6 +109,9 @@ No specific configuration define
 ## Resources
 
 
+## Next TO-DO
+- [ ] experiment with bazel
+
 
 
 

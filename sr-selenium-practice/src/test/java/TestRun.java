@@ -1,11 +1,16 @@
+import common.dto.GetAllureJson;
+import common.dto.ScenariosContext;
 import common.utilities.Context;
 import common.utilities.ElementsEnums;
+import common.utilities.JDBCHelper;
 import common.utilities.RetryAnalyzer;
 import common.utilities.annotation.CustomAnnotation;
 import initTestDriver.TestInit;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,9 +29,12 @@ import java.util.List;
 import java.util.Map;
 
 
+
 @Epic("Web Application Regression Testing")
 @Feature("orange hrm")
 public class TestRun extends TestInit {
+
+    private static final ScenariosContext scenariosContext = new ScenariosContext();
 
     @Before
     public void runTestNG() {
@@ -34,8 +42,24 @@ public class TestRun extends TestInit {
     }
 
     @After
-    public void teardown() {
+    public void teardown(Scenario scenario) {
+
         this.tearDown();
+
+        scenariosContext.setUuid(scenario.getId());
+        scenariosContext.setTagList(scenario.getSourceTagNames());
+        scenariosContext.setName(scenario.getName());
+        scenariosContext.setFailedStatus(scenario.isFailed());
+
+    }
+
+    @AfterAll
+    public static void read() throws Exception{
+        GetAllureJson ga = new GetAllureJson();
+
+        JDBCHelper db = new JDBCHelper();
+        db.get(ga.getAllureResultByUUID(scenariosContext.getUuid()));
+
     }
 
     @Test
@@ -250,6 +274,7 @@ public class TestRun extends TestInit {
     @Test(retryAnalyzer = RetryAnalyzer.class)
     @And("Navigate subpage and verify page titles")
     @Step("Navigate subpage and verify")
+    @Epic("Navigate")
     public void NavigateSubPage(DataTable path) {
 
         CommonSteps cs = new CommonSteps(driver.get());

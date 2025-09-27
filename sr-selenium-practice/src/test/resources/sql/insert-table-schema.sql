@@ -1,0 +1,1 @@
+INSERT INTO allure_test_results (uuid, name, status, start,stop) VALUES (?, ?, ?, ?,?)
